@@ -55,8 +55,8 @@ export default function TrackPage() {
               <div className="timeline-event"><span className="timeline-dot"></span><div><strong>Decision</strong><p>Your ETA will be sent to the email used in your application.</p></div><time>—</time></div>
             </div>
             <div className="action-needed">
-              <div><strong>If we need something clearer</strong><p>The exact document and a replacement deadline will appear here. You&#39;ll also receive an email.</p></div>
-              <Link className="btn btn-outline btn-sm" href="/apply">Manage documents</Link>
+              <div><strong>If we need something clearer</strong><p>The exact document and a replacement deadline will appear here. You&#39;ll also receive an email. Open the document centre to see the full status.</p></div>
+              <Link className="btn btn-outline btn-sm" href="/documents">Manage documents</Link>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', marginTop: '21px', paddingTop: '18px', borderTop: '1px solid var(--line)' }}>
               <Link className="btn btn-ghost" href="/help">Get help →</Link>

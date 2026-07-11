@@ -4,6 +4,13 @@ Last updated: 2026-07-11
 
 ## State: `green` — header / category-show / trust-bar / hero all updated.
 
+## Implemented this session (2026-07-11 fourth pass)
+
+- Dedicated `/documents` route added: 7 sections (dark hero with Application reference input, Document status card with 4 mock-uploaded rows, inline 2160p Seedance video, official specifications for passport + photo, per-category evidence for 6 routes, re-upload walkthrough, 8-item FAQ, official support card). Header "Documents" nav, footer "Documents" link, /apply step-3 intro and /track "Manage documents" action all retargeted to `/documents`.
+- 8 new stills via PixVerse `gpt-image-2.0` 2160p (assets `412976470064949` … `412976486107991`, seeds `413100001–413100008`): page hero, 4 document mockup thumbnails, 3 re-upload walkthrough steps.
+- 1 new video via PixVerse Seedance 2.0 Standard 2160p 15s (asset `412976846616406`, seed `413200001`): documents page inline loop, HEVC primary + H.264 fallback.
+- `app/documents/page.js` added. `app/globals.css` grew `.docs-*` styles. agent-docs updated: `decisions.md` (new dated entry), `02-component-map.md` (media rows), `media-status.md` (asset log), `status/global.md` (component state), `status/website-status.md` (fourth-pass section).
+
 ## Implemented this session (2026-07-11 third pass)
 
 - Document checklist section removed from the homepage (the three ivory requirement cards + advisory bar). "Documents" nav links retargeted from the deleted `/#requirements` anchor to `/help#fees` (header) and `/help` (footer).

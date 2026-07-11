@@ -131,7 +131,7 @@ export default function ApplyPage() {
               {/* Step 3 */}
               <div className={`form-step${currentStep === 3 ? ' active' : ''}`} data-step="3">
                 <h2>Your documents</h2>
-                <p className="form-intro">Use clear, current files. Core files are required for every route; the third file changes by category.</p>
+                <p className="form-intro">Use clear, current files. Core files are required for every route; the third file changes by category. You can check status and replace any file from the <Link href="/documents">document centre</Link>.</p>
                 <div className="upload-list">
                   {[{ key: 'passport', icon: '▣', label: 'Passport bio page' }, { key: 'photo', icon: '◉', label: 'Recent photograph' }, { key: 'business', icon: '▤', label: 'Category evidence' }].map(({ key, icon, label }) => (
                     <div key={key} className={`upload-card${uploadStates[key] ? ' ready' : ''}`}>

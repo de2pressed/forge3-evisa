@@ -30,6 +30,23 @@ Previous Gateway-of-India hero (`public/video/gateway-mumbai-loop.mp4`, `public/
 
 Seeds: `413000001` / `413000002` / `413000003` / `413000004`. Prompts in `.pixverse/prompt-cat-{1..4}.txt`. Auto-advancing 7s cycle in `app/page.js`; respects `prefers-reduced-motion`.
 
+## Documents page media
+
+| File | PixVerse asset ID | Model | Settings |
+|---|---:|---|---|
+| `public/images/doc-hero.jpg` | 412976470064949 | gpt-image-2.0 | 3840×2160 (2160p) — documents page hero background |
+| `public/images/doc-passport-mockup.jpg` | 412976472313327 | gpt-image-2.0 | 3840×2160 — passport bio page thumbnail |
+| `public/images/doc-photo-mockup.jpg` | 412976474587115 | gpt-image-2.0 | 3840×2160 — recent photograph thumbnail |
+| `public/images/doc-invitation-mockup.jpg` | 412976476711724 | gpt-image-2.0 | 3840×2160 — category evidence thumbnail |
+| `public/images/doc-flight-mockup.jpg` | 412976479787640 | gpt-image-2.0 | 3840×2160 — travel confirmation thumbnail |
+| `public/images/doc-reup-step1.jpg` | 412976481776427 | gpt-image-2.0 | 3840×2160 — re-upload walkthrough step 1 (email) |
+| `public/images/doc-reup-step2.jpg` | 412976484140619 | gpt-image-2.0 | 3840×2160 — re-upload walkthrough step 2 (form) |
+| `public/images/doc-reup-step3.jpg` | 412976486107991 | gpt-image-2.0 | 3840×2160 — re-upload walkthrough step 3 (success) |
+| `public/video/documents-loop.mp4` | 412976846616406 | Seedance 2.0 Standard | 3840×2160 (2160p), 15s, 16:9, no audio — documents page inline loop, HEVC primary |
+| `public/video/documents-loop-1080p.mp4` | Local ffmpeg transcode | libx264 | 3840×2160, 15s, H.264 — documents page browser fallback |
+
+Seeds: `413100001` … `413100008` for stills, `413200001` for the video. Prompts in `.pixverse/prompt-doc-*.txt`.
+
 ## Official logos (provided by the user)
 
 | File | Use |

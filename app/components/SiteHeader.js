@@ -44,7 +44,7 @@ export default function SiteHeader({ announcement = 'No emergency or express eVi
             <nav className="nav-links" id="navLinks" aria-label="Main navigation">
               <Link className={isActive('/') && pathname === '/' ? 'active' : ''} href="/">Home</Link>
               <Link className={isActive('/eligibility') ? 'active' : ''} href="/eligibility">Eligibility</Link>
-              <Link href="/help#fees">Documents</Link>
+              <Link href="/documents">Documents</Link>
               <Link className={isActive('/track') ? 'active' : ''} href="/track">Track</Link>
               <Link className={isActive('/help') ? 'active' : ''} href="/help">Help</Link>
             </nav>

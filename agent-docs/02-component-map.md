@@ -61,7 +61,17 @@ Step navigation, upload state, fee-consent gating, submission confirmation and t
 |---|---|---|
 | `public/video/india-beauty-loop.mp4` | PixVerse Seedance 2.0 Standard | 3840×2160 (2160p), 15s, 16:9, no audio — homepage hero loop, HEVC primary |
 | `public/video/india-beauty-loop-1080p.mp4` | Local ffmpeg transcode | 3840×2160, 15s, H.264 — browser fallback for Safari/Firefox |
+| `public/video/documents-loop.mp4` | PixVerse Seedance 2.0 Standard | 3840×2160 (2160p), 15s, 16:9, no audio — documents page inline loop, HEVC primary |
+| `public/video/documents-loop-1080p.mp4` | Local ffmpeg transcode | 3840×2160, 15s, H.264 — documents page browser fallback |
 | `public/images/india-beauty-hero.png` | PixVerse still | Homepage hero poster; reused as visa-categories background source |
+| `public/images/doc-hero.jpg` | PixVerse `gpt-image-2.0` | Documents page hero background image, 3840×2160 |
+| `public/images/doc-passport-mockup.jpg` | PixVerse `gpt-image-2.0` | Document status card — Passport bio page thumbnail |
+| `public/images/doc-photo-mockup.jpg` | PixVerse `gpt-image-2.0` | Document status card — Recent photograph thumbnail |
+| `public/images/doc-invitation-mockup.jpg` | PixVerse `gpt-image-2.0` | Document status card — Category evidence thumbnail |
+| `public/images/doc-flight-mockup.jpg` | PixVerse `gpt-image-2.0` | Document status card — Travel confirmation thumbnail |
+| `public/images/doc-reup-step1.jpg` | PixVerse `gpt-image-2.0` | Re-upload walkthrough step 1 (email inbox mockup) |
+| `public/images/doc-reup-step2.jpg` | PixVerse `gpt-image-2.0` | Re-upload walkthrough step 2 (re-upload form mockup) |
+| `public/images/doc-reup-step3.jpg` | PixVerse `gpt-image-2.0` | Re-upload walkthrough step 3 (success confirmation mockup) |
 | `public/images/bengaluru-blue-hour.png` | PixVerse Nano Banana 2 | Culture gallery carousel (Bengaluru slide) |
 | `public/images/kerala-backwaters.png` | PixVerse Nano Banana 2 | Eligibility page hero + culture gallery carousel (Kerala slide) |
 | `public/images/jaipur-craft.png` | PixVerse Nano Banana 2 | Culture gallery carousel (Jaipur slide) |

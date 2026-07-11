@@ -2,6 +2,20 @@
 
 Last updated: 2026-07-11
 
+## 2026-07-11 — Dedicated Documents page (`/documents`)
+
+The previous build had a thin "Documents" FAQ block buried inside `/help` and a "Documents" link in the header that pointed at `/help#fees` — but the depth (status tracking, re-upload flow, per-category evidence, official specs) had no dedicated home. Added a new route `app/documents/page.js` with seven sections:
+
+1. **Dark hero** with a generated PixVerse airport-counter background image, breadcrumb, heading, lead, and a sticky Application reference input pre-filled with the demo `IND-BIZ-26-7K92` so the page works without a real backend.
+2. **Document Status Card** — a single large card with a 4-row grid: Passport bio page, Recent photograph, Category evidence, Travel confirmation. Each row has a generated flat-lay thumbnail, file name + size + uploaded-at meta, a status pill (Ready / Under review / Re-upload requested / Missing), and a per-row Replace file action that flips the row to "Under review" + shows a toast.
+3. **Inline 16:9 video block** — 2160p Seedance 2.0 Standard loop (15 s, no audio) rendered with HEVC primary + H.264 fallback, the same pattern as the hero video.
+4. **Official Specifications** — two-column reference (Passport bio page | Recent photograph) with the official spec values mirrored from `indianvisaonline.gov.in/visa/instruction.html` (JPEG 10–300 KB, 25–35 mm head height, etc.) plus a "common rejection reasons" callout per card.
+5. **Per-category evidence** — six cards (e-Tourist / e-Business / e-Medical / e-Student or Family / e-Transit / e-Conference) with the category-specific document list.
+6. **Re-upload walkthrough** — three numbered steps (Receive the email → Open the Re-upload tab → Submit the corrected file) with generated PixVerse mockup images.
+7. **Documents FAQ** (8 items) + **Official support** block with the Re-upload tab deep-link and the SBI ePay / Axis Bank helpdesk numbers from the official site.
+
+Header "Documents" nav, footer "Documents" link, `/apply` step-3 intro, and `/track`'s "Manage documents" action all retargeted from `/help#fees` / `/help` / `/apply` to `/documents`. The page also gets the global header + footer from `app/layout.js` automatically.
+
 ## 2026-07-11 — Header and footer lifted to root layout (global)
 
 The previous build had every page file (`app/page.js`, `app/apply/page.js`, `app/eligibility/page.js`, `app/help/page.js`, `app/track/page.js`) importing and rendering its own `<SiteHeader />` and `<SiteFooter />`, and `/apply` carried a completely separate `<header className="app-header">` with different markup (no nav, just a secure-label + Exit link). `/eta/page.js` had no header at all. Result: the header and footer were inconsistent across pages and the apply page's special context was orphaned from the design system.

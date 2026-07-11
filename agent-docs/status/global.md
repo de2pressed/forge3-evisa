@@ -12,7 +12,8 @@ Jayant approved the most recent batch of homepage/header/footer/trust-bar/dropdo
 
 | Component | State | Detail |
 |---|---|---|
-| Public website — homepage | green | Category-first hero, route checker, categories section with 4-image auto slideshow, 3-image gallery, requirements, FAQ |
+| Public website — homepage | green | Category-first hero, route checker, categories section with 4-image auto slideshow, 3-image gallery carousel, requirements, FAQ |
+| Public website — documents | green | Dedicated `/documents` page: dark hero with reference input, 4-row document status card (Passport / Photo / Category evidence / Travel confirmation), inline 2160p video, official specs, per-category evidence, re-upload walkthrough, 8-item FAQ, official support |
 | Public website — header/footer | green | 3-column header grid with BOI left, nav+actions centred on one row, eVisa right; emblem in footer brand column |
 | Public website — header on /apply | green | Same left/right logo layout adapted for `.app-header` |
 | Application flow | yellow | Five-stage, category-aware flow; awaiting user walk-through |

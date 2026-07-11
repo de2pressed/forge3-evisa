@@ -38,7 +38,7 @@ export default function SiteFooter({ variant = 'full', disclaimer }) {
           </div>
           <div className="footer-col">
             <h3>Prepare</h3>
-            <Link href="/help">Documents</Link>
+            <Link href="/documents">Documents</Link>
             <Link href="/help#fees">Fees and payment</Link>
             <Link href="/help">Help centre</Link>
           </div>
