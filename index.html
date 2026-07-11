@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian e-Visa Portal — Ministry of Home Affairs</title>
+  <meta name="description" content="Official Government of India e-Visa portal. Apply online, upload documents, pay securely, and obtain your electronic travel authorization.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- Trust Banner -->
+  <div class="trust-banner">
+    <div class="container">
+      <span>Official Portal of the Ministry of Home Affairs, Government of India · Beware of Fraudulent Third-Party Sites</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="header-wrapper">
+    <header class="container main-header">
+      <a href="#" class="logo-container" onclick="window.location.reload()">
+        <div class="logo-emblem">I</div>
+        <div>
+          <span class="logo-text">India e-Visa</span>
+          <span class="logo-subtitle">Bureau of Immigration</span>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><span class="nav-link active" data-view="home">Home</span></li>
+          <li><span class="nav-link" data-view="apply">Apply</span></li>
+          <li><span class="nav-link" data-view="track">Track Status</span></li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <video class="hero-video-bg" src="assets/hero.mp4" autoplay loop muted playsinline></video>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Your journey to India starts here—not with paperwork.</h1>
+        <p>Apply online and receive your official digital entry authorization. Safe, transparent, and typically processed within 72 hours.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" id="apply-cta">Apply for e-Visa</button>
+          <button class="btn btn-secondary" id="track-cta">Track Existing Application</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Section Wrapper -->
+  <main class="container">
+
+    <!-- HOME VIEW: Eligibility Widget & Features -->
+    <div id="home-widget-container">
+      <!-- Quick Eligibility & Fees Widget -->
+      <section class="eligibility-widget">
+        <h2 class="widget-title">Check Eligibility, Requirements & Fees</h2>
+        <div class="widget-grid">
+          <div class="form-group">
+            <label for="widget-nationality">Your Nationality</label>
+            <select id="widget-nationality" class="form-control">
+              <option value="" disabled selected>Select your passport country</option>
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="Germany">Germany</option>
+              <option value="France">France</option>
+              <option value="Japan">Japan</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Pakistan">Pakistan</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="widget-purpose">Purpose of Travel</label>
+            <select id="widget-purpose" class="form-control">
+              <option value="" disabled selected>Select your primary purpose</option>
+              <option value="tourism">Tourism, Recreation or Visiting Friends/Family</option>
+              <option value="business">Business Meetings, Ventures or Conferences</option>
+              <option value="medical">Short-term Medical Treatment</option>
+              <option value="student">Short-term Internship or Academic Program</option>
+              <option value="transit">Transiting to a Third Country</option>
+              <option value="conference">Attending a Private/Government Conference</option>
+            </select>
+          </div>
+          
+          <div>
+            <button class="btn btn-primary" id="widget-check-btn" style="width: 100%; height: 46px;">Calculate Cost & Requirements</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Result Card -->
+        <div class="recommendation-result" id="rec-result">
+          <div id="rec-content"></div>
+          <div style="text-align: center; margin-top: var(--spacing-md);" id="widget-apply-cta">
+            <button class="btn btn-primary">Proceed with Application</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Editorial trust highlights -->
+      <section class="features-section">
+        <div class="section-header">
+          <h2>Designed for modern travelers</h2>
+          <p>The e-Visa platform simplifies your entry requirements with official backing and total process clarity.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">✓</div>
+            <h3>100% Digital Path</h3>
+            <p>From passport upload to visa grant. No embassy visits, no physical stamps, and no paper files required.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🛡</div>
+            <h3>Direct Trust</h3>
+            <p>Your fees are calculated upfront and paid securely. No hidden agency commissions, express surcharges, or third-party markup.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Real-Time Tracking</h3>
+            <p>Track progress immediately. Receive email notices if documents require updates and download your digital pass once approved.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- APPLY VIEW: Multi-step Form Wizard -->
+    <div id="apply-view" class="view-section">
+      <div class="wizard-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="wizard-sidebar">
+          <h4>Application Progress</h4>
+          <ol class="steps-list">
+            <li class="step-item active">
+              <span class="step-number">1</span>
+              <span>Personal Details</span>
+            </li>
+            <li class="step-item">
+              <span class="step-number">2</span>
+              <span>Document Upload</span>
+            </li>
+            <li class="step-item">
+              <span class="step-number">3</span>
+              <span>Payment Details</span>
+            </li>
+            <li class="step-item">
+              <span class="step-number">4</span>
+              <span>Review & Submit</span>
+            </li>
+          </ol>
+        </aside>
+
+        <!-- Wizard Panel -->
+        <div class="wizard-content">
+          <form id="evisa-form" onsubmit="return false;">
+            
+            <!-- Step 1: Personal Details -->
+            <div class="step-pane active">
+              <div class="step-header">
+                <h2>Passport & Travel Details</h2>
+                <p>Ensure details match your physical passport bio page exactly.</p>
+              </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="app-nationality">Nationality</label>
+                  <select id="app-nationality" class="form-control" required>
+                    <option value="" disabled selected>Select country</option>
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Singapore">Singapore</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="visa-purpose">Visa Purpose / Subcategory</label>
+                  <select id="visa-purpose" class="form-control" required>
+                    <option value="" disabled selected>Select purpose</option>
+                    <option value="tourism">Tourism, Recreation or Friends Visit</option>
+                    <option value="business">Business Venture, Meetings, Lecturing</option>
+                    <option value="medical">Medical Treatment</option>
+                    <option value="student">Short Course or Internship</option>
+                    <option value="transit">Transit through India</option>
+                    <option value="conference">Conference or Workshop Attendance</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="passport-given-name">Given Name(s)</label>
+                  <input type="text" id="passport-given-name" class="form-control" placeholder="FIRST AND MIDDLE NAMES" required style="text-transform: uppercase;">
+                </div>
+                <div class="form-group">
+                  <label for="passport-surname">Surname / Last Name</label>
+                  <input type="text" id="passport-surname" class="form-control" placeholder="SURNAME" required style="text-transform: uppercase;">
+                </div>
+                <div class="form-group">
+                  <label for="passport-number">Passport Number</label>
+                  <input type="text" id="passport-number" class="form-control" placeholder="ENTER PASSPORT NUMBER" required style="text-transform: uppercase;">
+                </div>
+                <div class="form-group">
+                  <label for="applicant-email">Contact Email Address</label>
+                  <input type="email" id="applicant-email" class="form-control" placeholder="yourname@domain.com" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Document Upload -->
+            <div class="step-pane">
+              <div class="step-header">
+                <h2>Document Upload</h2>
+                <p>Upload files matching Indian government biometric criteria.</p>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: var(--spacing-lg);">
+                
+                <!-- Photo Upload Box -->
+                <div>
+                  <div style="font-weight: 600; margin-bottom: var(--spacing-xs);">1. Front-facing Photograph</div>
+                  <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-sm);">
+                    Requirements: JPEG format, size under 1MB, solid white background, neutral facial expression.
+                  </p>
+                  <div class="upload-zone">
+                    <div class="upload-icon">📷</div>
+                    <div class="upload-text">Drag photo here or click to browse</div>
+                    <div class="upload-hint">JPEG format only, max 1MB</div>
+                    <input type="file" id="doc-photo" accept="image/jpeg, image/jpg">
+                  </div>
+                  <div class="upload-preview" id="preview-photo" style="display: none;">
+                    <div class="file-info">
+                      <span class="file-icon">✓</span>
+                      <span class="file-name">photo.jpg</span>
+                    </div>
+                    <button class="btn-remove-file">Remove</button>
+                  </div>
+                </div>
+
+                <!-- Passport Upload Box -->
+                <div>
+                  <div style="font-weight: 600; margin-bottom: var(--spacing-xs);">2. Passport Bio Page Scan</div>
+                  <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-sm);">
+                    Requirements: PDF format, size under 3MB. Must show photo, name, date of birth, validity, and machine-readable lines.
+                  </p>
+                  <div class="upload-zone">
+                    <div class="upload-icon">📄</div>
+                    <div class="upload-text">Drag PDF here or click to browse</div>
+                    <div class="upload-hint">PDF format only, max 3MB</div>
+                    <input type="file" id="doc-passport" accept="application/pdf">
+                  </div>
+                  <div class="upload-preview" id="preview-passport" style="display: none;">
+                    <div class="file-info">
+                      <span class="file-icon">✓</span>
+                      <span class="file-name">passport.pdf</span>
+                    </div>
+                    <button class="btn-remove-file">Remove</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Step 3: Payment Details -->
+            <div class="step-pane">
+              <div class="step-header">
+                <h2>Secure Processing Fee</h2>
+                <p>All fees are collected securely and processed directly via the government gateway.</p>
+              </div>
+              <div class="payment-box">
+                <div class="billing-summary" id="form-fee-summary" style="display: none;"></div>
+                
+                <div class="card-frame">
+                  <div style="font-weight:600; font-size: 0.9rem; margin-bottom: var(--spacing-md); color: var(--color-text-primary);">
+                    💳 Credit / Debit Card Payment
+                  </div>
+                  <div class="form-group" style="margin-bottom: var(--spacing-sm);">
+                    <label for="card-name">Cardholder Name</label>
+                    <input type="text" id="card-name" class="form-control" placeholder="As it appears on card" style="text-transform: uppercase;">
+                  </div>
+                  <div class="form-group" style="margin-bottom: var(--spacing-sm);">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" class="form-control" placeholder="0000 0000 0000 0000">
+                  </div>
+                  <div class="form-grid" style="margin-bottom: 0;">
+                    <div class="form-group">
+                      <label for="card-expiry">Expiry Date</label>
+                      <input type="text" id="card-expiry" class="form-control" placeholder="MM/YY">
+                    </div>
+                    <div class="form-group">
+                      <label for="card-cvv">CVV</label>
+                      <input type="password" id="card-cvv" class="form-control" placeholder="•••" maxlength="4">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Review Details -->
+            <div class="step-pane">
+              <div class="step-header">
+                <h2>Review & Verify Information</h2>
+                <p>Carefully review your information. Erroneous details will lead to immediate rejection at the border.</p>
+              </div>
+              
+              <!-- Personal details check box -->
+              <div class="review-section-box">
+                <div class="review-section-header">
+                  <span>Applicant Information</span>
+                </div>
+                <div class="review-grid" id="review-personal-box"></div>
+              </div>
+
+              <!-- Uploaded docs check box -->
+              <div class="review-section-box">
+                <div class="review-section-header">
+                  <span>Uploaded Credentials</span>
+                </div>
+                <div class="review-grid" id="review-docs-box"></div>
+              </div>
+
+              <!-- Fees summary box -->
+              <div class="review-section-box">
+                <div class="review-section-header">
+                  <span>Fee Summary</span>
+                </div>
+                <div class="review-grid" id="review-billing-box"></div>
+              </div>
+
+              <div class="info-callout">
+                <div class="info-callout-icon">ℹ</div>
+                <div>
+                  <strong>Declarative Confirmation</strong>
+                  <p>By submitting this application, I confirm that all details match my passport. I understand that visa fees are non-refundable and that the grant of an e-Visa does not guarantee entry into India, which remains at the discretion of the Immigration Officer.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="form-actions">
+              <button class="btn btn-outline" id="btn-prev" style="display: none;">Back</button>
+              <button class="btn btn-primary" id="btn-next" style="margin-left: auto;">Continue to Documents</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TRACK VIEW: Track Status -->
+    <div id="track-view" class="view-section">
+      <div class="track-section">
+        <h2 style="font-size: 2.2rem; text-align: center; margin-bottom: var(--spacing-sm); font-family: var(--font-serif);">Track Application Status</h2>
+        <p style="color: var(--color-text-secondary); text-align: center; margin-bottom: var(--spacing-xl);">
+          Enter your unique Application Reference ID and passport number to look up your file.
+        </p>
+
+        <!-- Search Form -->
+        <div class="track-card" style="margin-bottom: var(--spacing-xl);">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="track-ref">Application Reference</label>
+              <input type="text" id="track-ref" class="form-control" placeholder="e.g. IND-REUPLOAD or IND-APPROVED" style="text-transform: uppercase;">
+            </div>
+            <div class="form-group">
+              <label for="track-passport">Passport Number</label>
+              <input type="text" id="track-passport" class="form-control" placeholder="e.g. Z1234567 or A9876543" style="text-transform: uppercase;">
+            </div>
+          </div>
+          <button class="btn btn-primary" id="track-lookup-btn" style="width: 100%;">Check Status</button>
+          
+          <div class="info-callout" style="margin-top: var(--spacing-md);">
+            <div class="info-callout-icon">💡</div>
+            <div>
+              <strong>Quick Sandbox Tip</strong>
+              <p>Try looking up reference <strong><code>IND-REUPLOAD</code></strong> (Passport <code>Z1234567</code>) to see a mock photo re-upload flow, or <strong><code>IND-APPROVED</code></strong> (Passport <code>A9876543</code>) to view a pre-approved digital eVisa pass!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tracking Results Card -->
+        <div class="track-card" id="track-status-card" style="display: none;"></div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h4>Republic of India e-Visa Portal</h4>
+        <p>A digital-first initiative by the Ministry of Home Affairs and the Bureau of Immigration, powered by the National Informatics Centre (NIC).</p>
+        <p style="color: var(--color-primary); font-weight: 500; font-size: 0.8rem;">
+          Official anti-fraud declaration: The government of India charges no express fees. All applications must be submitted via the official domain.
+        </p>
+      </div>
+      <div class="footer-links-col">
+        <h5>e-Visa Categories</h5>
+        <ul class="footer-links">
+          <li><a href="#" onclick="switchView('home')">e-Tourist Visa</a></li>
+          <li><a href="#" onclick="switchView('home')">e-Business Visa</a></li>
+          <li><a href="#" onclick="switchView('home')">e-Medical Visa</a></li>
+          <li><a href="#" onclick="switchView('home')">e-Conference Visa</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h5>Support & Utilities</h5>
+        <ul class="footer-links">
+          <li><a href="#" onclick="switchView('track')">Check Status</a></li>
+          <li><a href="#" onclick="switchView('track')">Re-upload Documents</a></li>
+          <li><a href="#" onclick="switchView('apply')">Save / Resume Form</a></li>
+          <li><a href="mailto:indvisa-support@gov.in">Help Desk Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-copy">
+      <span>© 2026 Ministry of Home Affairs, Government of India. All rights reserved.</span>
+      <span>Designed for web-first accessibility.</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
