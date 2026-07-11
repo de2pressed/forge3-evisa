@@ -165,8 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const totalFee = visaInfo.baseFee + visaInfo.processingFee;
 
       recContent.innerHTML = `
-        <div class="rec-card">
-          <div class="rec-details">
+        <div class="rec-card tilt-3d">
+          <div class="rec-details tilt-3d-inner">
             <h3>${visaInfo.name}</h3>
             <p>${visaInfo.desc}</p>
             
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </div>
           
-          <div class="rec-price-card">
+          <div class="rec-price-card tilt-3d-inner">
             <div class="price-breakdown">
               <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-secondary); font-weight: 600; margin-bottom: var(--spacing-sm);">Estimated Fees</div>
               <div class="price-row">
@@ -217,6 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
 
       widgetApplyCta.style.display = 'none';
+
+      // Initialize 3D tilt on the new dynamic card
+      if (window.init3dTilt) window.init3dTilt();
 
       document.getElementById('widget-proceed-btn').addEventListener('click', () => {
         // Pre-fill application purpose based on selection
@@ -795,75 +798,180 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderDigitalPass(app) {
     const visaInfo = VISA_DATABASE[app.purpose] || VISA_DATABASE.tourism;
-    // Generate valid dates
     const grantDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     const expiryDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
     return `
-      <div class="eta-pass-wrapper">
-        <div class="eta-pass-header">
-          <span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-border); font-weight: 600;">Republic of India · Electronic Travel Authorization</span>
-          <h3 style="margin-top: 2px;">e-VISA DIRECT PASS</h3>
-          <span class="status-badge">Approved / Active</span>
-        </div>
-        
-        <div class="eta-pass-body">
-          <div class="eta-qr-section">
-            <div class="qr-code-img">
-              <!-- Inline SVG for QR Code -->
-              <svg width="120" height="120" viewBox="0 0 29 29" style="shape-rendering: crispEdges;">
-                <path fill="#141413" d="M0 0h7v7H0zm1 1v5h5V1zm8 0h3v1H9zm1 2h1v1h-1zm-1 2h2v1H9zm4-5h7v7h-7zm1 1v5h5V1zm8 1h3v1h-3zm1 2h1v1h-1zm-1 2h2v1h-2zm-14 8h7v7H0zm1 1v5h5v-5zm8 0h1v1h-1zm2 1h1v1h-1zm-2 2h3v1h-3zm3 2h1v1h-1zm2-5h1v1h-1zm2 0h1v1h-1zm-3 2h2v1h-2zm3 1h2v1h-2zm2-3h1v1h-1zm-2 4h1v1h-1zm2 1h1v1h-1zm-7 1h1v1h-1zm3 0h1v1h-1zm3-8h1v2h-1zm1 3h2v1h-2zm1 2h1v1h-1zm-4-4h2v1h-2zm-1 2h1v1h-1zm-1 1h1v1h-1zm4 1h1v1h-1zm3 1h2v1h-2z"/>
-              </svg>
+      <div style="text-align: center; margin: var(--spacing-lg) 0 var(--spacing-sm);">
+        <span style="font-size: 0.8rem; color: var(--color-text-secondary); font-weight: 500;">💡 Click on the card to flip it in 3D perspective</span>
+      </div>
+      <div class="eta-pass-wrapper" onclick="this.querySelector('.pass-card-inner').classList.toggle('flipped')">
+        <div class="pass-card-inner">
+          
+          <!-- FRONT OF TRAVEL PASS -->
+          <div class="pass-card-front">
+            <div class="eta-pass-header">
+              <span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-border); font-weight: 600;">Republic of India · Electronic Travel Authorization</span>
+              <h3 style="margin-top: 2px;">e-VISA DIRECT PASS</h3>
+              <span class="status-badge">Approved / Active</span>
             </div>
-            <span style="font-size: 0.85rem; font-family: monospace; font-weight: 700; color: var(--color-primary);">${app.referenceId}</span>
+            
+            <div class="eta-pass-body">
+              <div class="eta-qr-section">
+                <div class="qr-code-img">
+                  <svg width="100" height="100" viewBox="0 0 29 29" style="shape-rendering: crispEdges;">
+                    <path fill="#141413" d="M0 0h7v7H0zm1 1v5h5V1zm8 0h3v1H9zm1 2h1v1h-1zm-1 2h2v1H9zm4-5h7v7h-7zm1 1v5h5V1zm8 1h3v1h-3zm1 2h1v1h-1zm-1 2h2v1h-2zm-14 8h7v7H0zm1 1v5h5v-5zm8 0h1v1h-1zm2 1h1v1h-1zm-2 2h3v1h-3zm3 2h1v1h-1zm2-5h1v1h-1zm2 0h1v1h-1zm-3 2h2v1h-2zm3 1h2v1h-2zm2-3h1v1h-1zm-2 4h1v1h-1zm2 1h1v1h-1zm-7 1h1v1h-1zm3 0h1v1h-1zm3-8h1v2h-1zm1 3h2v1h-2zm1 2h1v1h-1zm-4-4h2v1h-2zm-1 2h1v1h-1zm-1 1h1v1h-1zm4 1h1v1h-1zm3 1h2v1h-2z"/>
+                  </svg>
+                </div>
+                <span style="font-size: 0.85rem; font-family: monospace; font-weight: 700; color: var(--color-primary);">${app.referenceId}</span>
+              </div>
+
+              <div class="pass-grid">
+                <div class="pass-item">
+                  <span class="label">Given Name(s)</span>
+                  <span class="value">${app.givenName}</span>
+                </div>
+                <div class="pass-item">
+                  <span class="label">Surname</span>
+                  <span class="value">${app.surname}</span>
+                </div>
+                <div class="pass-item">
+                  <span class="label">Nationality</span>
+                  <span class="value">${app.nationality}</span>
+                </div>
+                <div class="pass-item">
+                  <span class="label">Passport Number</span>
+                  <span class="value">${app.passportNo}</span>
+                </div>
+                <div class="pass-item" style="grid-column: span 2;">
+                  <span class="label">Visa Subcategory</span>
+                  <span class="value" style="font-size: 0.85rem;">${visaInfo.name}</span>
+                </div>
+                <div class="pass-item">
+                  <span class="label">Date of Issue</span>
+                  <span class="value">${grantDate}</span>
+                </div>
+                <div class="pass-item">
+                  <span class="label">Date of Expiry</span>
+                  <span class="value">${expiryDate}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="eta-pass-footer" style="padding: var(--spacing-sm) var(--spacing-md); font-size: 0.7rem;">
+              Click card to view Official Regulations on the back.
+            </div>
           </div>
 
-          <div class="pass-grid">
-            <div class="pass-item">
-              <span class="label">Given Name(s)</span>
-              <span class="value">${app.givenName}</span>
+          <!-- BACK OF TRAVEL PASS -->
+          <div class="pass-card-back">
+            <div class="eta-pass-header" style="background-color: var(--color-primary);">
+              <span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-bg); font-weight: 600;">Bureau of Immigration · Ministry of Home Affairs</span>
+              <h3 style="margin-top: 2px;">ENTRY REGULATIONS</h3>
+              <span class="status-badge" style="background-color: var(--color-text-primary);">Republic of India</span>
             </div>
-            <div class="pass-item">
-              <span class="label">Surname</span>
-              <span class="value">${app.surname}</span>
+            
+            <div class="eta-pass-body" style="font-size: 0.75rem; color: var(--color-text-secondary); display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+              <div>
+                <strong style="color: var(--color-text-primary); display:block; margin-bottom: var(--spacing-xs);">Conditions of e-Visa Travel:</strong>
+                <ol style="padding-left: var(--spacing-md); display: flex; flex-direction: column; gap: var(--spacing-xs); text-align: left;">
+                  <li>The e-Visa is non-extendable and non-convertible.</li>
+                  <li>Holders must arrive via one of the 29 designated airports or 5 designated seaports.</li>
+                  <li>Biometrics will be captured mandatorily upon arrival.</li>
+                  <li>The traveler must carry a copy of this ETA at all times during their stay in India.</li>
+                  <li>Must possess an onward/return ticket and sufficient travel funds.</li>
+                </ol>
+              </div>
+              
+              <div style="border-top: 1px dashed var(--color-border); padding-top: var(--spacing-sm); margin-top: var(--spacing-md); text-align: center;">
+                <div style="display:flex; justify-content:space-around; align-items:center; margin-bottom: var(--spacing-xs);">
+                  <div style="text-align: left; font-size: 0.65rem;">
+                    <strong>Govt. Verification Code</strong><br>
+                    <span style="font-family: monospace;">BOI-MHA-2026-X7</span>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 0.95rem; color: var(--color-text-primary);">A. K. Sharma</div>
+                    <div style="font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: -3px;">Joint Secretary (Immigration)</div>
+                  </div>
+                </div>
+                <div style="font-size: 0.6rem; color: var(--color-text-secondary);">Valid for air/sea entry only. Land entry is prohibited under e-Visa guidelines.</div>
+              </div>
             </div>
-            <div class="pass-item">
-              <span class="label">Nationality</span>
-              <span class="value">${app.nationality}</span>
-            </div>
-            <div class="pass-item">
-              <span class="label">Passport Number</span>
-              <span class="value">${app.passportNo}</span>
-            </div>
-            <div class="pass-item">
-              <span class="label">Visa Subcategory</span>
-              <span class="value" style="font-size:0.8rem;">${visaInfo.name}</span>
-            </div>
-            <div class="pass-item">
-              <span class="label">Entries Allowed</span>
-              <span class="value">${visaInfo.entries}</span>
-            </div>
-            <div class="pass-item">
-              <span class="label">Date of Issue</span>
-              <span class="value">${grantDate}</span>
-            </div>
-            <div class="pass-item">
-              <span class="label">Date of Expiry</span>
-              <span class="value">${expiryDate}</span>
+            
+            <div class="eta-pass-footer" style="padding: var(--spacing-sm) var(--spacing-md); font-size: 0.7rem;">
+              Click card to view Biometric details on the front.
             </div>
           </div>
-        </div>
 
-        <div class="eta-pass-footer">
-          Please present this digital pass on your mobile device or printed copy to the Immigration Officer upon arrival in India.
-          <br>
-          <button class="btn btn-outline" onclick="window.print()" style="padding: 0.4rem 0.8rem; font-size: 0.75rem; margin-top: var(--spacing-sm);">
-            🖨 Print or Download Pass
-          </button>
         </div>
+      </div>
+      <div style="text-align: center; margin-top: var(--spacing-md);">
+        <button class="btn btn-outline" onclick="window.print()">🖨 Print Travel Pass (PDF)</button>
       </div>
     `;
   }
+
+  // 3D Card Tilt Effect
+  function init3dTilt() {
+    const tiltElements = document.querySelectorAll('.tilt-3d');
+    tiltElements.forEach(el => {
+      // Clear previous listeners to avoid duplicates
+      el.removeEventListener('mousemove', handleTiltMove);
+      el.removeEventListener('mouseleave', handleTiltLeave);
+
+      el.addEventListener('mousemove', handleTiltMove);
+      el.addEventListener('mouseleave', handleTiltLeave);
+    });
+  }
+
+  function handleTiltMove(e) {
+    const rect = this.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const xc = rect.width / 2;
+    const yc = rect.height / 2;
+    const rotateX = (yc - y) / 15; // Max 10-12 degrees tilt
+    const rotateY = (x - xc) / 15;
+    this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    this.style.boxShadow = '0 15px 30px rgba(20, 20, 19, 0.1)';
+  }
+
+  function handleTiltLeave() {
+    this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    this.style.boxShadow = 'none';
+  }
+
+  // Initialize Tilt on load
+  init3dTilt();
+
+  // Task Hub Card Click Handlers
+  const actionApplyCard = document.getElementById('card-action-apply');
+  const actionTrackCard = document.getElementById('card-action-track');
+  const actionVerifyCard = document.getElementById('card-action-verify');
+
+  if (actionApplyCard) {
+    actionApplyCard.addEventListener('click', () => {
+      switchView('apply');
+    });
+  }
+
+  if (actionTrackCard) {
+    actionTrackCard.addEventListener('click', () => {
+      switchView('track');
+    });
+  }
+
+  if (actionVerifyCard) {
+    actionVerifyCard.addEventListener('click', () => {
+      switchView('track');
+      document.getElementById('track-ref').value = 'IND-APPROVED';
+      document.getElementById('track-passport').value = 'A9876543';
+      document.getElementById('track-lookup-btn').click();
+    });
+  }
+
+  // Expose init3dTilt globally so we can call it when dynamic elements render
+  window.init3dTilt = init3dTilt;
 
   // Pre-load form details
   loadFormState();
