@@ -1,0 +1,102 @@
+'use client';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import SiteFooter from '../components/SiteFooter';
+import Toast from '../components/Toast';
+
+export default function TrackPage() {
+  const [reference, setReference] = useState('IND-BIZ-26-7K92');
+  const [statusRef, setStatusRef] = useState('IND-BIZ-26-7K92');
+
+  useEffect(() => {
+    document.body.classList.add('app-bg');
+    return () => document.body.classList.remove('app-bg');
+  }, []);
+
+  const handleStatus = () => {
+    if (!reference.trim()) {
+      document.getElementById('referenceInput')?.focus();
+      window.__forgeToast?.('Enter your application reference');
+      return;
+    }
+    setStatusRef(reference.trim().toUpperCase());
+    window.__forgeToast?.('Status refreshed');
+  };
+
+  const handleMenu = () => {
+    const nav = document.getElementById('navLinks');
+    if (nav) nav.classList.toggle('open');
+  };
+
+  return (
+    <>
+      <header className="site-header">
+        <div className="container nav">
+          <Link className="brand" href="/" aria-label="Forge eVisa home">
+            <svg className="brand-mark" viewBox="0 0 32 32" fill="none">
+              <path d="M16 2.5 19.4 12l9.1 4-9.1 4L16 29.5 12.6 20 3.5 16l9.1-4L16 2.5Z" fill="currentColor"/>
+              <path d="m16 8 1.7 6.3L24 16l-6.3 1.7L16 24l-1.7-6.3L8 16l6.3-1.7L16 8Z" fill="#fbfaf5"/>
+            </svg>
+            <span>Forge<small>India eVisa</small></span>
+          </Link>
+          <nav className="nav-links" id="navLinks" aria-label="Main navigation">
+            <Link href="/">Home</Link>
+            <Link href="/eligibility">Eligibility</Link>
+            <Link className="active" href="/track">Track</Link>
+            <Link href="/help">Help</Link>
+          </nav>
+          <button className="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false" onClick={handleMenu}>
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+          <div className="nav-actions">
+            <Link className="btn btn-primary btn-sm" href="/apply">New application ↗</Link>
+          </div>
+        </div>
+      </header>
+
+      <main className="section">
+        <div className="container track-grid">
+          <section className="lookup">
+            <div className="eyebrow">Application status</div>
+            <h1 className="serif">Know where you stand.</h1>
+            <p>Enter the reference sent to your email. You&#39;ll see payment, document review, any action needed and your decision in one place.</p>
+            <div className="lookup-box card">
+              <div className="field">
+                <label htmlFor="referenceInput">Application reference</label>
+                <input id="referenceInput" value={reference} onChange={(e) => setReference(e.target.value)} placeholder="IND-BIZ-26-7K92" />
+              </div>
+              <button className="btn btn-primary" onClick={handleStatus}>Check status →</button>
+              <p className="helper">Example: IND-BIZ-26-7K92</p>
+            </div>
+          </section>
+
+          <section className="status-card card" id="statusResult">
+            <div className="status-head">
+              <div>
+                <div className="eyebrow" id="statusReference">{statusRef}</div>
+                <h2>Documents under review</h2>
+              </div>
+              <span className="status-pill">In progress</span>
+            </div>
+            <div className="timeline">
+              <div className="timeline-event done"><span className="timeline-dot"></span><div><strong>Application submitted</strong><p>Your application entered the review queue.</p></div><time>11 Jul · 12:42</time></div>
+              <div className="timeline-event done"><span className="timeline-dot"></span><div><strong>Payment confirmed</strong><p>Your transaction was successful.</p></div><time>11 Jul · 12:43</time></div>
+              <div className="timeline-event current"><span className="timeline-dot"></span><div><strong>Documents under review</strong><p>Your passport, photograph and business evidence are being checked.</p></div><time>In progress</time></div>
+              <div className="timeline-event"><span className="timeline-dot"></span><div><strong>Decision</strong><p>Your ETA will be sent to the email used in your application.</p></div><time>—</time></div>
+            </div>
+            <div className="action-needed">
+              <div><strong>If we need something clearer</strong><p>The exact document and a replacement deadline will appear here. You&#39;ll also receive an email.</p></div>
+              <Link className="btn btn-outline btn-sm" href="/apply">Manage documents</Link>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '14px', marginTop: '21px', paddingTop: '18px', borderTop: '1px solid var(--line)' }}>
+              <Link className="btn btn-ghost" href="/help">Get help →</Link>
+              <Link className="btn btn-dark btn-sm" href="/eta">Preview approved ETA</Link>
+            </div>
+          </section>
+        </div>
+      </main>
+      <SiteFooter variant="minimal" disclaimer="For final travel decisions, rely on the ETA sent to your registered email and official immigration guidance." />
+      <Toast />
+    </>
+  );
+}
