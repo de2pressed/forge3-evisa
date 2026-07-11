@@ -2,11 +2,11 @@
 
 Last updated: 2026-07-11
 
-Overall state: `yellow` — user approved the staging push; release handoff in progress.
+Overall state: `green` — approved build pushed to GitHub staging.
 
 ## Current gate
 
-Jayant approved the staging push via the `de2pressed` GitHub account. Codex still does not perform final website verification; the next action is to commit and push the approved build to the `staging` branch only.
+Jayant approved the staging push via the `de2pressed` GitHub account. The reviewed build is now pushed to `origin/staging`. Codex did not perform a final website verification, in line with the explicit instruction.
 
 ## Components
 
@@ -18,7 +18,7 @@ Jayant approved the staging push via the `de2pressed` GitHub account. Codex stil
 | PixVerse media | yellow | Four images and two loops generated and linked; user review pending |
 | Research | green | Ten-portal study and official India refresh complete |
 | Process record | green | `process.md` contains brief, storyboard, prompt log, features and iterations |
-| GitHub staging | yellow | Approved; commit and push in progress |
+| GitHub staging | green | Pushed to `origin/staging` at `12721b2` |
 
 ## Recently completed
 
@@ -30,7 +30,7 @@ Jayant approved the staging push via the `de2pressed` GitHub account. Codex stil
 
 ## Next action
 
-Commit the approved website, media and documentation to the local `staging` branch and push `staging` to `origin` using the active `de2pressed` account. After successful push, change this status to `green` and record the commit.
+Await review feedback or an explicit request to open a pull request. Any follow-up changes should be made on `staging` unless Jayant directs otherwise.
 
 ## See also
 
