@@ -7,7 +7,7 @@ export default function EligibilityPage() {
     <>
       <main>
         <section className="page-hero has-image">
-          <div className="page-hero-media"><img src="/images/kerala-backwaters.png" alt="Morning over Kerala's backwaters" /></div>
+          <div className="page-hero-media"><img src="/images/webp/kerala-backwaters.webp" alt="Morning over Kerala's backwaters" loading="lazy" /></div>
           <div className="container page-hero-content">
             <div className="breadcrumb"><Link href="/">Home</Link><span>›</span><span>Eligibility</span></div>
             <div className="eyebrow light" style={{ marginTop: '35px' }}>Know before you begin</div>

@@ -8,16 +8,16 @@ import CustomDropdown from './components/CustomDropdown';
 const nationalities = ['United Kingdom', 'United States', 'Australia', 'Canada', 'Japan', 'Singapore'];
 
 const categorySlides = [
-  { src: '/images/category-slide-1.png', alt: 'Kerala backwaters at golden dawn' },
-  { src: '/images/category-slide-2.png', alt: 'Mehrangarh Fort, Jodhpur, at warm afternoon' },
-  { src: '/images/category-slide-3.png', alt: 'Mumbai Marine Drive at blue hour' },
-  { src: '/images/category-slide-4.png', alt: 'Varanasi ghats at first light' },
+  { src: '/images/webp/category-slide-1.webp', alt: 'Kerala backwaters at golden dawn' },
+  { src: '/images/webp/category-slide-2.webp', alt: 'Mehrangarh Fort, Jodhpur, at warm afternoon' },
+  { src: '/images/webp/category-slide-3.webp', alt: 'Mumbai Marine Drive at blue hour' },
+  { src: '/images/webp/category-slide-4.webp', alt: 'Varanasi ghats at first light' },
 ];
 
 const gallerySlides = [
-  { src: '/images/bengaluru-blue-hour.png', caption: 'India moves at many speeds.', tag: 'Bengaluru · Karnataka' },
-  { src: '/images/kerala-backwaters.png',   caption: 'India begins gently.',         tag: 'Backwaters · Kerala' },
-  { src: '/images/jaipur-craft.png',        caption: 'India remembers every detail.', tag: 'Craft lanes · Rajasthan' },
+  { src: '/images/webp/bengaluru-blue-hour.webp', caption: 'India moves at many speeds.', tag: 'Bengaluru · Karnataka' },
+  { src: '/images/webp/kerala-backwaters.webp',   caption: 'India begins gently.',         tag: 'Backwaters · Kerala' },
+  { src: '/images/webp/jaipur-craft.webp',        caption: 'India remembers every detail.', tag: 'Craft lanes · Rajasthan' },
 ];
 
 const visaCategories = [
@@ -73,9 +73,8 @@ export default function HomePage() {
       <main>
         <section className="hero">
           <div className="hero-media">
-            <video autoPlay muted loop playsInline poster="/images/india-beauty-hero.png">
-              <source src="/video/india-beauty-loop.mp4" type="video/mp4; codecs=hevc" />
-              <source src="/video/india-beauty-loop-1080p.mp4" type="video/mp4" />
+            <video autoPlay muted loop playsInline preload="metadata" poster="/images/webp/india-beauty-hero.webp">
+              <source src="/video/compressed/india-beauty-loop-1080p.mp4" type="video/mp4" />
             </video>
           </div>
           <div className="container hero-content">
@@ -179,7 +178,7 @@ export default function HomePage() {
           <div className="culture-gallery">
             {gallerySlides.map((s, i) => (
               <figure key={s.src} className={`feature-visual gallery-slide${i === galleryIndex ? ' active' : ''}`}>
-                <img src={s.src} alt={s.caption} />
+                <img src={s.src} alt={s.caption} loading="lazy" />
                 <figcaption className="feature-caption"><strong>{s.caption}</strong><span>{s.tag}</span></figcaption>
               </figure>
             ))}

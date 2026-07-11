@@ -27,7 +27,7 @@ export default function SiteFooter({ variant = 'full', disclaimer }) {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand official-footer-brand">
-            <img src="/images/official/emblem.png" alt="Government of India emblem" />
+            <img src="/images/webp/emblem.webp" alt="Government of India emblem" loading="lazy" />
             <p>A clearer way to understand and complete the Indian eVisa journey.</p>
           </div>
           <div className="footer-col">

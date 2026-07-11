@@ -14,7 +14,7 @@ const documentRows = [
     uploaded: '11 Jul · 12:41',
     status: 'ready',
     statusLabel: 'Ready',
-    thumb: '/images/doc-passport-mockup.jpg',
+    thumb: '/images/webp/doc-passport-mockup.webp',
   },
   {
     key: 'photo',
@@ -25,7 +25,7 @@ const documentRows = [
     uploaded: '11 Jul · 12:42',
     status: 'ready',
     statusLabel: 'Ready',
-    thumb: '/images/doc-photo-mockup.jpg',
+    thumb: '/images/webp/doc-photo-mockup.webp',
   },
   {
     key: 'business',
@@ -36,7 +36,7 @@ const documentRows = [
     uploaded: '11 Jul · 12:42',
     status: 'review',
     statusLabel: 'Under review',
-    thumb: '/images/doc-invitation-mockup.jpg',
+    thumb: '/images/webp/doc-invitation-mockup.webp',
   },
   {
     key: 'travel',
@@ -47,7 +47,7 @@ const documentRows = [
     uploaded: '11 Jul · 12:42',
     status: 'missing',
     statusLabel: 'Optional · not provided',
-    thumb: '/images/doc-flight-mockup.jpg',
+    thumb: '/images/webp/doc-flight-mockup.webp',
   },
 ];
 
@@ -159,7 +159,7 @@ export default function DocumentsPage() {
       <main>
         <section className="docs-hero">
           <div className="docs-hero-media">
-            <img src="/images/doc-hero.jpg" alt="An immigration officer at an Indian airport counter scanning a passport under warm light" />
+            <img src="/images/webp/doc-hero.webp" alt="An immigration officer at an Indian airport counter scanning a passport under warm light" loading="lazy" />
           </div>
           <div className="container docs-hero-content">
             <div className="breadcrumb">
@@ -240,9 +240,8 @@ export default function DocumentsPage() {
               <p>A still moment from the official eVisa journey — passport under warm light, immigration counter, the stamp that opens the country.</p>
             </div>
             <div className="docs-video-block">
-              <video autoPlay muted loop playsInline poster="/images/doc-hero.jpg">
-                <source src="/video/documents-loop.mp4" type="video/mp4; codecs=hevc" />
-                <source src="/video/documents-loop-1080p.mp4" type="video/mp4" />
+              <video autoPlay muted loop playsInline preload="metadata" poster="/images/webp/doc-hero.webp">
+                <source src="/video/compressed/documents-loop-1080p.mp4" type="video/mp4" />
               </video>
             </div>
             <p className="docs-video-caption">15-second loop · 2160p · Seedance 2.0 Standard</p>
@@ -329,7 +328,7 @@ export default function DocumentsPage() {
             <div className="docs-walkthrough-grid">
               <article className="docs-walkthrough-step">
                 <span className="step-num">1</span>
-                <div className="step-image"><img src="/images/doc-reup-step1.jpg" alt="Email inbox mockup showing the re-upload notification" /></div>
+                <div className="step-image"><img src="/images/webp/doc-reup-step1.webp" alt="Email inbox mockup showing the re-upload notification" loading="lazy" /></div>
                 <div className="step-body">
                   <h3>Receive the email</h3>
                   <p>Within about 24 hours, the official team emails the address you used to apply. The subject line identifies which document to replace.</p>
@@ -337,7 +336,7 @@ export default function DocumentsPage() {
               </article>
               <article className="docs-walkthrough-step">
                 <span className="step-num">2</span>
-                <div className="step-image"><img src="/images/doc-reup-step2.jpg" alt="Re-upload form with a file drop zone" /></div>
+                <div className="step-image"><img src="/images/webp/doc-reup-step2.webp" alt="Re-upload form with a file drop zone" loading="lazy" /></div>
                 <div className="step-body">
                   <h3>Open the Re-upload tab</h3>
                   <p>The email link takes you to the Re-upload tab on the official portal. The offending document is highlighted — no need to redo the rest of the form.</p>
@@ -345,7 +344,7 @@ export default function DocumentsPage() {
               </article>
               <article className="docs-walkthrough-step">
                 <span className="step-num">3</span>
-                <div className="step-image"><img src="/images/doc-reup-step3.jpg" alt="Confirmation screen after a successful re-upload" /></div>
+                <div className="step-image"><img src="/images/webp/doc-reup-step3.webp" alt="Confirmation screen after a successful re-upload" loading="lazy" /></div>
                 <div className="step-body">
                   <h3>Submit the corrected file</h3>
                   <p>Upload the corrected file in the same spec as the original. Status returns to Under review. The same reference number is used throughout.</p>

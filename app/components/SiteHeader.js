@@ -37,7 +37,7 @@ export default function SiteHeader({ announcement = 'No emergency or express eVi
             rel="noopener"
             aria-label="Bureau of Immigration"
           >
-            <img src="/images/official/boi_logo_1.png" alt="Bureau of Immigration" />
+            <img src="/images/webp/boi_logo_1.webp" alt="Bureau of Immigration" />
           </a>
 
           <div className="header-center">
@@ -62,7 +62,7 @@ export default function SiteHeader({ announcement = 'No emergency or express eVi
             rel="noopener"
             aria-label="Indian e-Visa"
           >
-            <img src="/images/official/e-visa-logo.png" alt="Indian e-Visa" />
+            <img src="/images/webp/e-visa-logo.webp" alt="Indian e-Visa" />
           </a>
 
           <button className="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false" onClick={handleMenu}>
