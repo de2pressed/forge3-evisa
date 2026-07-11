@@ -11,9 +11,9 @@ export default function SiteFooter({ variant = 'full', disclaimer }) {
 
   if (variant === 'minimal') {
     return (
-      <footer className="site-footer">
+      <footer className="site-footer minimal-footer">
         <div className="container">
-          <div className="footer-bottom" style={{ paddingTop: 0 }}>
+          <div className="footer-bottom">
             <span>© <span data-current-year></span> Forge eVisa</span>
             <span>{disclaimer}</span>
           </div>

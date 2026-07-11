@@ -66,17 +66,22 @@ button { cursor: pointer }
 .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow-sm) }
 
 /* ── Announcement bar ── */
+.official-header-identity { display: flex; align-items: center; flex: 0 0 auto; gap: 26px; min-width: 0 }
+.official-logo-group { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-size: 11px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap }
+.official-logo-group img { width: auto; height: 44px; object-fit: contain }
+.official-logo-group.emblem-mark img { height: 46px }
+.official-logo-group.evisa-mark img { height: 40px }
 .announcement { background: var(--forest); color: #dce9e3; font-size: 11px }
 .announcement .container { display: flex; justify-content: center; align-items: center; gap: 8px; min-height: 32px; text-align: center }
 .announcement i { width: 6px; height: 6px; border-radius: 50%; background: #a8c298 }
 
 /* ── Header ── */
 .site-header { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(222,219,207,.7); background: rgba(251,250,245,.88); backdrop-filter: blur(18px) }
-.nav { display: flex; align-items: center; gap: 34px; min-height: 76px }
+.nav { display: flex; align-items: center; gap: 28px; min-height: 76px }
 .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 800; letter-spacing: -.035em }
 .brand-mark { width: 28px; height: 28px; color: var(--clay) }
 .brand small { display: block; margin-top: -2px; color: var(--muted); font-size: 8px; letter-spacing: .13em; text-transform: uppercase }
-.nav-links { display: flex; align-items: center; gap: 28px; margin-left: auto }
+.nav-links { display: flex; align-items: center; gap: 22px; margin-left: auto }
 .nav-links a { text-decoration: none; color: var(--muted); font-size: 13px }
 .nav-links a:hover, .nav-links a.active { color: var(--ink) }
 .nav-actions { display: flex; align-items: center; gap: 10px }
@@ -99,10 +104,11 @@ button { cursor: pointer }
 .hero { position: relative; min-height: calc(100vh - 108px); overflow: hidden; background: #0c1f1b; color: #fff }
 .hero-media { position: absolute; inset: 0 }
 .hero-media video, .hero-media img { width: 100%; height: 100%; object-fit: cover }
-.hero-media:after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg, rgba(8,24,19,.9) 0%, rgba(8,24,19,.66) 46%, rgba(8,24,19,.18) 76%, rgba(8,24,19,.3)), linear-gradient(0deg, rgba(8,24,19,.58), transparent 52%) }
+.hero-media:after { display: none }
 .hero-content { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0,1fr) 375px; align-items: end; gap: 70px; min-height: calc(100vh - 108px); padding: 95px 0 66px }
-.hero h1 { max-width: 790px; margin: 15px 0 22px; font-size: clamp(58px,8.1vw,108px); line-height: .86 }
-.hero-lead { max-width: 560px; margin: 0; color: #dce2dd; font-size: 17px }
+.hero h1 { max-width: 790px; margin: 15px 0 22px; font-size: clamp(58px,8.1vw,108px); line-height: .86; text-shadow: 0 3px 22px rgba(0,0,0,.46) }
+.hero .eyebrow.light, .hero-lead, .hero-trust { text-shadow: 0 2px 14px rgba(0,0,0,.46) }
+.hero-lead { max-width: 560px; margin: 0; color: #fff; font-size: 17px }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px }
 .hero-trust { display: flex; flex-wrap: wrap; gap: 18px 24px; margin-top: 31px; color: #ccd7d1; font-size: 11px }
 .hero-trust span { display: flex; align-items: center; gap: 7px }
@@ -171,6 +177,12 @@ button { cursor: pointer }
 .stat:last-child { border: 0 }
 .stat b { display: block; font: 500 clamp(42px,5vw,67px)/1 Georgia,serif; letter-spacing: -.06em; color: var(--clay) }
 .stat span { display: block; margin-top: 8px; color: var(--muted); font-size: 11px }
+.category-grid, .utility-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px }
+.category-card, .utility-card { padding: 24px; text-decoration: none }
+.category-card h3, .utility-card strong { display: block; margin: 0 0 10px; color: var(--ink); font-size: 18px; letter-spacing: -.04em }
+.category-card p { margin: 0 0 14px; color: var(--muted); font-size: 13px }
+.category-card span, .utility-card span { display: block; color: #6f7a75; font-size: 11px }
+.utility-card:hover { border-color: rgba(199,95,61,.45); transform: translateY(-2px); transition: .2s ease }
 
 /* ── Steps grid ── */
 .steps-grid { display: grid; grid-template-columns: repeat(4,1fr) }
@@ -240,6 +252,8 @@ button { cursor: pointer }
 
 /* ── Footer ── */
 .site-footer { padding: 54px 0 28px; background: #101b17; color: #fff }
+.site-footer.minimal-footer { padding: 36px 0 28px }
+.minimal-footer .footer-bottom { padding-top: 0 }
 .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3,1fr); gap: 45px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.14) }
 .footer-brand p { max-width: 300px; color: #aebbb5; font-size: 11px }
 .footer-col h3 { margin: 0 0 14px; color: #dfe5e1; font-size: 10px; letter-spacing: .12em; text-transform: uppercase }
@@ -284,7 +298,7 @@ button { cursor: pointer }
 .app-header { position: sticky; top: 0; z-index: 30; border-bottom: 1px solid var(--line); background: rgba(251,250,245,.94); backdrop-filter: blur(16px) }
 .app-nav { display: flex; align-items: center; justify-content: space-between; min-height: 68px }
 .secure-label { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 10px }
-.app-main { padding: 56px 0 100px }
+.app-main { padding: 56px 0 56px }
 .app-title { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 34px }
 .app-title h1 { max-width: 680px; margin: 12px 0 0; font-size: clamp(41px,5vw,60px); line-height: .95 }
 .app-title p { max-width: 300px; margin: 0; color: var(--muted); font-size: 11px }
@@ -371,6 +385,7 @@ button { cursor: pointer }
 .back-link { display: inline-flex; align-items: center; gap: 7px; padding: 0; border: 0; background: none; color: var(--muted); text-decoration: none; font-size: 10px }
 
 /* ── Track page ── */
+.track-page-main { min-height: calc(100vh - 330px) }
 .track-grid { display: grid; grid-template-columns: .75fr 1.25fr; align-items: start; gap: 55px }
 .lookup h1 { margin: 14px 0 15px; font-size: clamp(48px,6vw,76px); line-height: .92 }
 .lookup p { max-width: 370px; color: var(--muted) }
@@ -444,6 +459,11 @@ button { cursor: pointer }
 @media (max-width: 950px) {
   .hero-content { grid-template-columns: 1fr; align-items: end; padding-top: 120px }
   .hero-card { max-width: 460px }
+  .official-header-identity { gap: 12px }
+  .official-logo-group span { display: none }
+  .official-logo-group img { height: 36px }
+  .official-logo-group.emblem-mark img { height: 38px }
+  .official-logo-group.evisa-mark img { height: 34px }
   .proof-grid { grid-template-columns: repeat(2,1fr) }
   .proof-item:nth-child(2) { border-right: 0 }
   .quick-start, .feature-grid, .faq, .info-layout, .track-grid, .eta-grid { grid-template-columns: 1fr }
@@ -480,7 +500,7 @@ button { cursor: pointer }
   .quick-form { padding: 21px }
   .form-grid, .choice-grid, .document-grid { grid-template-columns: 1fr }
   .field.full { grid-column: auto }
-  .stats, .steps-grid, .requirements, .stories { grid-template-columns: 1fr }
+  .stats, .steps-grid, .requirements, .stories, .category-grid, .utility-grid { grid-template-columns: 1fr }
   .stat, .stat + .stat { padding: 23px 0; border-right: 0; border-bottom: 1px solid var(--line) }
   .step, .step:first-child { min-height: auto; padding: 23px 0; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.16) }
   .step h3 { margin-top: 22px }

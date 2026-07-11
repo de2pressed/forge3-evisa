@@ -6,175 +6,170 @@ import SiteFooter from './components/SiteFooter';
 import Toast from './components/Toast';
 import Accordion from './components/Accordion';
 
+const visaCategories = [
+  { value: 'tourist', title: 'e-Tourist Visa', detail: 'For sightseeing, casual visits, short yoga, short courses and permitted short voluntary activity.', docs: 'Passport bio page, recent photo and purpose-specific evidence if applicable.' },
+  { value: 'business', title: 'e-Business Visa', detail: 'For meetings, trade, recruitment, supplier visits, technical consultations and eligible commercial activity.', docs: 'Passport bio page, recent photo, business card and invitation where applicable.' },
+  { value: 'medical', title: 'e-Medical Visa', detail: 'For medical treatment in India, including treatment under Indian systems of medicine.', docs: 'Passport bio page, recent photo and hospital letter.' },
+  { value: 'student', title: 'e-Student / Family Visa', detail: 'For eligible study-related travel and approved dependent family travel.', docs: 'Passport bio page, recent photo, admission/support evidence and category documents.' },
+  { value: 'transit', title: 'e-Transit Visa', detail: 'For eligible travellers passing through India with confirmed onward travel.', docs: 'Passport bio page, recent photo, confirmed ticket and onward permission where required.' },
+  { value: 'conference', title: 'Conference / Event route', detail: 'For eligible conferences, seminars, workshops and regulated specialist activities.', docs: 'Passport bio page, invitation, political/event clearance when required.' },
+];
+
 const faqItems = [
-  { question: 'How long is the normal e\u2011Business visa valid?', answer: 'It is valid for 365 days from the date the Electronic Travel Authorisation is granted, with multiple entries. Continuous stay during each visit should not exceed 180 days.' },
-  { question: 'What counts as a business card?', answer: 'A card provided by the company you work for. An invitation letter from the Indian company, including its information, address and phone number, can also support the application.' },
-  { question: 'Can I pay for faster processing?', answer: 'No. There is no emergency or express eVisa fee. Be cautious of any service claiming otherwise.' },
-  { question: 'Do I need to print the ETA?', answer: 'The ETA is sent by email. Keep an accessible copy for travel and present it with the same passport used in your application at immigration.' },
+  { question: 'Is Indian eVisa only for business travel?', answer: 'No. Official guidance lists tourist, business, medical, medical attendant, student, family, transit, miscellaneous and production investment categories. This redesigned flow starts with purpose so the right category and documents are shown first.' },
+  { question: 'When should I apply?', answer: 'For e-Tourist and e-Business travel, eligible applicants should apply online at least four days before arrival. Medical and medical-attendant routes also use a four-day minimum with a 120-day application window in official guidance.' },
+  { question: 'Can I pay for faster processing?', answer: 'No. Government of India guidance says there is no emergency or express eVisa fee. Treat any claim of guaranteed faster grant for an extra government fee as suspicious.' },
+  { question: 'What happens after submission?', answer: 'The application is scrutinized. If a document or image is not appropriate, the applicant may be advised by email to re-upload it. ETA is sent by email when granted and should be carried while travelling.' },
 ];
 
 export default function HomePage() {
   const [showRoute, setShowRoute] = useState(false);
-  const [routeTitle, setRouteTitle] = useState('Normal e\u2011Business Visa');
-  const [routeDetail, setRouteDetail] = useState('365 days \u00b7 Multiple entry \u00b7 Up to 180 days each visit');
+  const [route, setRoute] = useState(visaCategories[0]);
   const purposeRef = useRef(null);
 
   const handleRouteSubmit = (e) => {
     e.preventDefault();
-    const purpose = purposeRef.current?.value;
-    if (purpose === 'business') {
-      setRouteTitle('Normal e\u2011Business Visa');
-      setRouteDetail('365 days \u00b7 Multiple entry \u00b7 Up to 180 days each visit');
-    } else {
-      setRouteTitle('A different eVisa route may fit');
-      setRouteDetail('This experience is focused on normal business travel. Review eligibility before applying.');
-    }
+    const selected = visaCategories.find(item => item.value === purposeRef.current?.value) || visaCategories[0];
+    setRoute(selected);
     setShowRoute(true);
-    window.__forgeToast?.('Your recommended route is ready');
+    window.__forgeToast?.('Your eVisa route is ready');
   };
 
   return (
     <>
       <SiteHeader announcement="No emergency or express eVisa fee is charged. Know every cost before you pay." />
       <main>
-        {/* Hero */}
         <section className="hero">
           <div className="hero-media">
-            <video autoPlay muted loop playsInline poster="/images/hero-mumbai.png">
-              <source src="/video/india-dawn-loop.mp4" type="video/mp4" />
+            <video autoPlay muted loop playsInline poster="/images/india-beauty-hero.jpg">
+              <source src="/video/india-beauty-loop.mp4" type="video/mp4" />
             </video>
           </div>
           <div className="container hero-content">
             <div>
-              <div className="eyebrow light">Indian e&#x2011;Business Visa</div>
-              <h1 className="serif">Business takes you places. India should be easy.</h1>
-              <p className="hero-lead">A human-first application that explains every document, every fee and every next step before you begin.</p>
+              <div className="eyebrow light">Indian e&#x2011;Visa</div>
+              <h1 className="serif">India begins with the right e&#x2011;Visa.</h1>
+              <p className="hero-lead">Choose your travel purpose, prepare the right documents, pay the correct fee and track your ETA from one clear journey.</p>
               <div className="hero-actions">
-                <Link className="btn btn-primary" href="/apply">Start business application ↗</Link>
-                <Link className="btn btn-light" href="/track">Track an application</Link>
+                <Link className="btn btn-primary" href="/apply">Start application ↗</Link>
+                <Link className="btn btn-light" href="/track">Track or continue</Link>
               </div>
               <div className="hero-trust">
-                <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3 20 6v5c0 5.2-3.4 8.4-8 10-4.6-1.6-8-4.8-8-10V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>Secure application</span>
+                <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3 20 6v5c0 5.2-3.4 8.4-8 10-4.6-1.6-8-4.8-8-10V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>Official-source guidance</span>
                 <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg>Apply at least 4 days ahead</span>
                 <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Country-specific fee shown before payment</span>
               </div>
             </div>
             <aside className="hero-card">
               <div className="hero-card-top">
-                <div><div className="eyebrow">Your route</div><h2>Normal e&#x2011;Business Visa</h2></div>
-                <span className="pill">Available</span>
+                <div><div className="eyebrow">Choose your route</div><h2>{route.title}</h2></div>
+                <span className="pill">Eligible route</span>
               </div>
               <div className="fact-list">
-                <div className="fact-row"><span>Validity</span><strong>365 days</strong></div>
-                <div className="fact-row"><span>Entries</span><strong>Multiple</strong></div>
-                <div className="fact-row"><span>Stay per visit</span><strong>Up to 180 days</strong></div>
-                <div className="fact-row"><span>Application window</span><strong>4–120 days ahead</strong></div>
+                <div className="fact-row"><span>Start with</span><strong>Travel purpose</strong></div>
+                <div className="fact-row"><span>Core files</span><strong>Passport + photo</strong></div>
+                <div className="fact-row"><span>Fee</span><strong>Country-specific</strong></div>
+                <div className="fact-row"><span>ETA</span><strong>Sent by email</strong></div>
               </div>
               <div className="hero-docs">
-                <h3>Prepare these first</h3>
+                <h3>Most used categories</h3>
                 <ul className="clean-list">
-                  <li><span className="tick">✓</span>Passport bio page</li>
-                  <li><span className="tick">✓</span>Recent white-background photo</li>
-                  <li><span className="tick">✓</span>Business card or invitation</li>
+                  <li><span className="tick">✓</span>Tourist, business and medical</li>
+                  <li><span className="tick">✓</span>Student, family and transit</li>
+                  <li><span className="tick">✓</span>Conference and specialist routes</li>
                 </ul>
               </div>
-              <Link className="btn btn-dark" href="/apply">Begin in about 10 minutes →</Link>
+              <Link className="btn btn-dark" href="/apply">Find my category →</Link>
             </aside>
           </div>
           <div className="scroll-cue">Discover India</div>
         </section>
 
-        {/* Proof strip */}
         <section className="proof-strip"><div className="container proof-grid">
-          <div className="proof-item"><span className="proof-icon">365</span><div><strong>One-year validity</strong><span>From the date ETA is granted</span></div></div>
-          <div className="proof-item"><span className="proof-icon">↔</span><div><strong>Multiple entry</strong><span>For eligible business travel</span></div></div>
-          <div className="proof-item"><span className="proof-icon">180</span><div><strong>Up to 180 days</strong><span>Continuous stay per visit</span></div></div>
-          <div className="proof-item"><span className="proof-icon">₹</span><div><strong>Transparent payment</strong><span>Fee varies by nationality</span></div></div>
+          <div className="proof-item"><span className="proof-icon">9</span><div><strong>eVisa categories</strong><span>Tourist, business, medical, student and more</span></div></div>
+          <div className="proof-item"><span className="proof-icon">4</span><div><strong>Core process steps</strong><span>Apply, pay, receive ETA, fly</span></div></div>
+          <div className="proof-item"><span className="proof-icon">↺</span><div><strong>Recovery built in</strong><span>Continue, verify payment and re-upload</span></div></div>
+          <div className="proof-item"><span className="proof-icon">₹</span><div><strong>Transparent payment</strong><span>Fee varies by nationality and category</span></div></div>
         </div></section>
 
-        {/* Quick start */}
         <section className="section"><div className="container"><div className="quick-start card">
           <div className="quick-copy">
             <div className="eyebrow">Check your route</div>
-            <h2 className="serif">Three answers. One clear next step.</h2>
-            <p>We'll use your passport, travel purpose and arrival date to point you to the right application path.</p>
+            <h2 className="serif">One purpose. The right document list.</h2>
+            <p>We&apos;ll use your passport, travel purpose and arrival date to point you to the right eVisa path before you start typing application details.</p>
           </div>
           <form className="quick-form" onSubmit={handleRouteSubmit}>
             <div className="form-grid">
               <div className="field"><label htmlFor="nationality">Passport nationality</label><select id="nationality"><option>United Kingdom</option><option>United States</option><option>Australia</option><option>Canada</option><option>Japan</option><option>Singapore</option></select></div>
-              <div className="field"><label htmlFor="purpose">Reason for travel</label><select id="purpose" ref={purposeRef}><option value="business">Business meetings or trade</option><option value="conference">Conference</option><option value="tourism">Tourism</option><option value="medical">Medical treatment</option></select></div>
+              <div className="field"><label htmlFor="purpose">Reason for travel</label><select id="purpose" ref={purposeRef}>{visaCategories.map(item => <option key={item.value} value={item.value}>{item.title}</option>)}</select></div>
               <div className="field full"><label htmlFor="arrival">Planned arrival</label><input id="arrival" type="date" defaultValue="2026-08-10" /></div>
             </div>
             <button className="btn btn-primary" type="submit">See my route →</button>
             <div className={`route-result${showRoute ? ' show' : ''}`}>
-              <div className="route-result-top"><div><div className="eyebrow">Recommended</div><h3>{routeTitle}</h3><p>{routeDetail}</p></div><span className="pill">Matched</span></div>
+              <div className="route-result-top"><div><div className="eyebrow">Recommended</div><h3>{route.title}</h3><p>{route.detail}</p></div><span className="pill">Matched</span></div>
+              <p style={{ marginTop: '10px' }}><strong>Prepare:</strong> {route.docs}</p>
               <Link className="btn btn-dark btn-sm" href="/apply">Start application</Link>
             </div>
           </form>
         </div></div></section>
 
-        {/* Stats */}
         <section className="section soft"><div className="container">
-          <div className="section-head"><div><div className="eyebrow">The normal business route</div><h2 className="serif">Built around the trip you&#39;re actually making.</h2></div><p>For business meetings, supplier visits, trade, recruitment, board meetings and other eligible commercial activity.</p></div>
-          <div className="stats">
-            <div className="stat"><b>365</b><span>days of validity from the grant of ETA</span></div>
-            <div className="stat"><b>∞</b><span>multiple entries during the validity period</span></div>
-            <div className="stat"><b>180</b><span>maximum continuous stay on each visit</span></div>
+          <div className="section-head"><div><div className="eyebrow">Visa categories</div><h2 className="serif">The service is not business-only.</h2></div><p>Official guidance lists several eVisa routes. The redesigned experience starts by choosing the category, then narrows timing, documents and payment.</p></div>
+          <div className="category-grid">
+            {visaCategories.map(item => <article className="category-card card" key={item.value}><h3>{item.title}</h3><p>{item.detail}</p><span>{item.docs}</span></article>)}
           </div>
         </div></section>
 
-        {/* Steps */}
         <section className="section dark"><div className="container">
-          <div className="section-head"><div><div className="eyebrow light">One calm journey</div><h2 className="serif">From passport to permission.</h2></div><p>Save your progress at every step, return when you need, and always know what happens next.</p></div>
+          <div className="section-head"><div><div className="eyebrow light">Official lifecycle</div><h2 className="serif">Apply online. Pay online. Receive ETA. Fly to India.</h2></div><p>The public journey follows the official four-step process while adding recovery actions for partially filled forms, failed payments and document re-upload.</p></div>
           <div className="steps-grid">
-            <article className="step"><span className="step-num">01</span><h3>Apply</h3><p>Tell us about yourself, your trip and the Indian organisation you&#39;ll visit.</p></article>
-            <article className="step"><span className="step-num">02</span><h3>Upload</h3><p>Add your passport, photograph and business evidence with clear visual guidance.</p></article>
-            <article className="step"><span className="step-num">03</span><h3>Pay</h3><p>Review the nationality-specific visa fee and transaction charge before paying.</p></article>
-            <article className="step"><span className="step-num">04</span><h3>Receive</h3><p>Track the decision, respond to document requests and receive ETA by email.</p></article>
+            <article className="step"><span className="step-num">01</span><h3>Apply online</h3><p>Choose the category, enter passport and trip details, then upload required files.</p></article>
+            <article className="step"><span className="step-num">02</span><h3>Pay eVisa fee</h3><p>Review the nationality/category-specific fee and transaction charges before payment.</p></article>
+            <article className="step"><span className="step-num">03</span><h3>Receive ETA</h3><p>Electronic Travel Authorization is sent to the registered email when granted.</p></article>
+            <article className="step"><span className="step-num">04</span><h3>Fly to India</h3><p>Carry the ETA and matching passport for immigration stamping on arrival.</p></article>
           </div>
         </div></section>
 
-        {/* Feature */}
         <section className="section"><div className="container"><div className="feature-grid">
           <figure className="feature-visual">
             <img src="/images/bengaluru-blue-hour.png" alt="Bengaluru business district after monsoon rain" />
             <figcaption className="feature-caption"><strong>India moves at many speeds.</strong><span>Bengaluru · Karnataka</span></figcaption>
           </figure>
           <div className="feature-cards">
-            <article className="feature-card card"><div><div className="eyebrow">Before you begin</div><h3>Know your eligibility</h3><p>Your passport must normally remain valid for at least six months when you apply and have two blank pages.</p></div><Link href="/eligibility">Review the checklist →</Link></article>
-            <article className="feature-card card"><div><div className="eyebrow">No surprises</div><h3>Fees depend on nationality</h3><p>The applicable eVisa fee and bank transaction charge are shown before payment. No emergency fee exists.</p></div><Link href="/help#fees">Understand fees →</Link></article>
-            <article className="feature-card card"><div><div className="eyebrow">Return with confidence</div><h3>Track every update</h3><p>See submission, payment, document review and decision as one readable timeline.</p></div><Link href="/track">Track an application →</Link></article>
+            <article className="feature-card card"><div><div className="eyebrow">Before you begin</div><h3>Check eligibility</h3><p>Passport nationality, passport type, travel purpose and prior restrictions decide whether eVisa is available.</p></div><Link href="/eligibility">Review the checklist →</Link></article>
+            <article className="feature-card card"><div><div className="eyebrow">No surprises</div><h3>Fees depend on category and nationality</h3><p>The applicable eVisa fee and bank transaction charge are shown before payment. No emergency fee exists.</p></div><Link href="/help#fees">Understand fees →</Link></article>
+            <article className="feature-card card"><div><div className="eyebrow">Return with confidence</div><h3>Track every update</h3><p>See submission, payment, document review, re-upload requests and decision as one readable timeline.</p></div><Link href="/track">Track an application →</Link></article>
           </div>
         </div></div></section>
 
-        {/* Stories */}
         <section className="section soft"><div className="container">
-          <div className="section-head"><div><div className="eyebrow">Beyond the form</div><h2 className="serif">The India your work brings you to.</h2></div><p>Ancient craft and new enterprise share the same streets. The visa is only the beginning.</p></div>
-          <div className="stories">
-            <article className="story"><img src="/images/jaipur-craft.png" alt="Artisan arranging block-printed textiles in Jaipur" /><div className="story-copy"><div className="eyebrow light">Jaipur · Rajasthan</div><h3>Made by hand, built to travel.</h3><p>Craft, trade and enterprise have crossed these courtyards for centuries.</p></div></article>
-            <article className="story"><video autoPlay muted loop playsInline poster="/images/kerala-backwaters.png"><source src="/video/kerala-morning-loop.mp4" type="video/mp4" /></video><div className="story-copy"><div className="eyebrow light">Alappuzha · Kerala</div><h3>Room to see farther.</h3><p>A country of movement, from backwater mornings to boardroom afternoons.</p></div></article>
+          <div className="section-head"><div><div className="eyebrow">Continue or manage</div><h2 className="serif">The official service has recovery actions. So should this redesign.</h2></div><p>Applicants do not only start new forms. They come back to finish, pay, print, track and re-upload.</p></div>
+          <div className="utility-grid">
+            <Link className="utility-card card" href="/apply"><strong>Complete partially filled form</strong><span>Return to a saved application and continue from the last step.</span></Link>
+            <Link className="utility-card card" href="/track"><strong>Verify payment / pay fee</strong><span>Check pending payment state before retrying a transaction.</span></Link>
+            <Link className="utility-card card" href="/track"><strong>Print eVisa application</strong><span>Access the submitted form for records and travel preparation.</span></Link>
+            <Link className="utility-card card" href="/track"><strong>Check visa status</strong><span>Use the application reference to see scrutiny, re-upload and ETA status.</span></Link>
+            <Link className="utility-card card" href="/apply"><strong>Reupload data</strong><span>Replace unclear documents when review requests a correction.</span></Link>
+            <a className="utility-card card" href="https://indianvisaonline.gov.in/evisa/images/SampleForm.pdf" target="_blank" rel="noopener"><strong>Sample application form ↗</strong><span>Compare the redesigned flow against the official sample form.</span></a>
           </div>
         </div></section>
 
-        {/* Requirements */}
         <section className="section" id="requirements"><div className="container">
-          <div className="section-head"><div><div className="eyebrow">Document checklist</div><h2 className="serif">Prepare once. Upload with confidence.</h2></div><p>Clear, complete files prevent avoidable delays and make re-upload requests less likely.</p></div>
+          <div className="section-head"><div><div className="eyebrow">Document checklist</div><h2 className="serif">Core files first. Category evidence second.</h2></div><p>Every route starts with passport and photo. Additional documents depend on the eVisa category and purpose.</p></div>
           <div className="requirements">
-            <article className="requirement card"><span className="requirement-num">01</span><h3>Passport bio page</h3><p>A clear scan showing your photograph, name, date of birth, nationality and expiry date.</p></article>
-            <article className="requirement card"><span className="requirement-num">02</span><h3>Recent photograph</h3><p>Front-facing, full face, plain white background, without borders or distracting shadows.</p></article>
-            <article className="requirement card"><span className="requirement-num">03</span><h3>Business evidence</h3><p>Your business card, or an invitation from the Indian company with address and phone number.</p></article>
+            <article className="requirement card"><span className="requirement-num">01</span><h3>Passport bio page</h3><p>Clear scan showing photograph, name, date of birth, nationality and expiry date. Official guidance specifies PDF size limits.</p></article>
+            <article className="requirement card"><span className="requirement-num">02</span><h3>Recent photograph</h3><p>Front-facing, full face, plain light or white background, without borders, shadows or blur.</p></article>
+            <article className="requirement card"><span className="requirement-num">03</span><h3>Category evidence</h3><p>Business card, hospital letter, admission letter, invitation, onward ticket or clearance documents depending on route.</p></article>
           </div>
-          <div className="advisory"><div><strong>Give yourself enough time.</strong><span>Normal e&#x2011;Business applications should be made at least 4 days before arrival and can generally be made up to 120 days ahead.</span></div><Link className="btn btn-outline btn-sm" href="/eligibility">Full eligibility details</Link></div>
+          <div className="advisory"><div><strong>Give yourself enough time.</strong><span>Eligible e-Tourist and e-Business applicants should apply online at least 4 days before arrival; some categories use a 120-day window.</span></div><Link className="btn btn-outline btn-sm" href="/eligibility">Full eligibility details</Link></div>
         </div></section>
 
-        {/* FAQ */}
         <section className="section soft"><div className="container faq">
           <div className="faq-intro"><div className="eyebrow">Plain answers</div><h2 className="serif">Before you ask.</h2><p>The essentials, without sending you through a maze of notices and PDFs.</p><Link className="btn btn-ghost" href="/help">Visit the help centre →</Link></div>
           <Accordion items={faqItems} defaultOpen={0} />
         </div></section>
 
-        {/* CTA */}
-        <section className="cta-band"><div className="container cta-band-inner"><div><h2 className="serif">India is waiting. The paperwork shouldn&#39;t be.</h2><p>Start with the normal business route and know what you need before you type a single passport number.</p></div><Link className="btn btn-light" href="/apply">Start your application ↗</Link></div></section>
+        <section className="cta-band"><div className="container cta-band-inner"><div><h2 className="serif">India is waiting. Start with the correct route.</h2><p>Select your travel purpose first, then prepare the exact evidence before payment.</p></div><Link className="btn btn-light" href="/apply">Start your application ↗</Link></div></section>
       </main>
       <SiteFooter />
       <Toast />

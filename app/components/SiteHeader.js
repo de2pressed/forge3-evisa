@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import OfficialMasthead from './OfficialMasthead';
 
 export default function SiteHeader({ announcement }) {
   const pathname = usePathname();
@@ -30,17 +31,12 @@ export default function SiteHeader({ announcement }) {
       )}
       <header className="site-header">
         <div className="container nav">
-          <Link className="brand" href="/" aria-label="Forge eVisa home">
-            <svg className="brand-mark" viewBox="0 0 32 32" fill="none">
-              <path d="M16 2.5 19.4 12l9.1 4-9.1 4L16 29.5 12.6 20 3.5 16l9.1-4L16 2.5Z" fill="currentColor"/>
-              <path d="m16 8 1.7 6.3L24 16l-6.3 1.7L16 24l-1.7-6.3L8 16l6.3-1.7L16 8Z" fill="#fbfaf5"/>
-            </svg>
-            <span>Forge<small>India eVisa</small></span>
-          </Link>
+          <OfficialMasthead />
           <nav className="nav-links" id="navLinks" aria-label="Main navigation">
             <Link className={isActive('/') && pathname === '/' ? 'active' : ''} href="/">Home</Link>
             <Link className={isActive('/eligibility') ? 'active' : ''} href="/eligibility">Eligibility</Link>
             <Link href="/#requirements">Documents</Link>
+            <Link className={isActive('/track') ? 'active' : ''} href="/track">Track</Link>
             <Link className={isActive('/help') ? 'active' : ''} href="/help">Help</Link>
           </nav>
           <button className="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false" onClick={handleMenu}>

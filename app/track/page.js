@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import SiteHeader from '../components/SiteHeader';
 import SiteFooter from '../components/SiteFooter';
 import Toast from '../components/Toast';
 
@@ -23,38 +24,11 @@ export default function TrackPage() {
     window.__forgeToast?.('Status refreshed');
   };
 
-  const handleMenu = () => {
-    const nav = document.getElementById('navLinks');
-    if (nav) nav.classList.toggle('open');
-  };
-
   return (
     <>
-      <header className="site-header">
-        <div className="container nav">
-          <Link className="brand" href="/" aria-label="Forge eVisa home">
-            <svg className="brand-mark" viewBox="0 0 32 32" fill="none">
-              <path d="M16 2.5 19.4 12l9.1 4-9.1 4L16 29.5 12.6 20 3.5 16l9.1-4L16 2.5Z" fill="currentColor"/>
-              <path d="m16 8 1.7 6.3L24 16l-6.3 1.7L16 24l-1.7-6.3L8 16l6.3-1.7L16 8Z" fill="#fbfaf5"/>
-            </svg>
-            <span>Forge<small>India eVisa</small></span>
-          </Link>
-          <nav className="nav-links" id="navLinks" aria-label="Main navigation">
-            <Link href="/">Home</Link>
-            <Link href="/eligibility">Eligibility</Link>
-            <Link className="active" href="/track">Track</Link>
-            <Link href="/help">Help</Link>
-          </nav>
-          <button className="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false" onClick={handleMenu}>
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-          </button>
-          <div className="nav-actions">
-            <Link className="btn btn-primary btn-sm" href="/apply">New application ↗</Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
-      <main className="section">
+      <main className="section track-page-main">
         <div className="container track-grid">
           <section className="lookup">
             <div className="eyebrow">Application status</div>
@@ -81,7 +55,7 @@ export default function TrackPage() {
             <div className="timeline">
               <div className="timeline-event done"><span className="timeline-dot"></span><div><strong>Application submitted</strong><p>Your application entered the review queue.</p></div><time>11 Jul · 12:42</time></div>
               <div className="timeline-event done"><span className="timeline-dot"></span><div><strong>Payment confirmed</strong><p>Your transaction was successful.</p></div><time>11 Jul · 12:43</time></div>
-              <div className="timeline-event current"><span className="timeline-dot"></span><div><strong>Documents under review</strong><p>Your passport, photograph and business evidence are being checked.</p></div><time>In progress</time></div>
+              <div className="timeline-event current"><span className="timeline-dot"></span><div><strong>Documents under review</strong><p>Your passport, photograph and category evidence are being checked.</p></div><time>In progress</time></div>
               <div className="timeline-event"><span className="timeline-dot"></span><div><strong>Decision</strong><p>Your ETA will be sent to the email used in your application.</p></div><time>—</time></div>
             </div>
             <div className="action-needed">
@@ -95,7 +69,7 @@ export default function TrackPage() {
           </section>
         </div>
       </main>
-      <SiteFooter variant="minimal" disclaimer="For final travel decisions, rely on the ETA sent to your registered email and official immigration guidance." />
+      <SiteFooter />
       <Toast />
     </>
   );
