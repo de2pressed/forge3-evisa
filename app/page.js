@@ -1,10 +1,24 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import SiteHeader from './components/SiteHeader';
-import SiteFooter from './components/SiteFooter';
 import Toast from './components/Toast';
 import Accordion from './components/Accordion';
+import CustomDropdown from './components/CustomDropdown';
+
+const nationalities = ['United Kingdom', 'United States', 'Australia', 'Canada', 'Japan', 'Singapore'];
+
+const categorySlides = [
+  { src: '/images/category-slide-1.png', alt: 'Kerala backwaters at golden dawn' },
+  { src: '/images/category-slide-2.png', alt: 'Mehrangarh Fort, Jodhpur, at warm afternoon' },
+  { src: '/images/category-slide-3.png', alt: 'Mumbai Marine Drive at blue hour' },
+  { src: '/images/category-slide-4.png', alt: 'Varanasi ghats at first light' },
+];
+
+const gallerySlides = [
+  { src: '/images/bengaluru-blue-hour.png', caption: 'India moves at many speeds.', tag: 'Bengaluru · Karnataka' },
+  { src: '/images/kerala-backwaters.png',   caption: 'India begins gently.',         tag: 'Backwaters · Kerala' },
+  { src: '/images/jaipur-craft.png',        caption: 'India remembers every detail.', tag: 'Craft lanes · Rajasthan' },
+];
 
 const visaCategories = [
   { value: 'tourist', title: 'e-Tourist Visa', detail: 'For sightseeing, casual visits, short yoga, short courses and permitted short voluntary activity.', docs: 'Passport bio page, recent photo and purpose-specific evidence if applicable.' },
@@ -25,11 +39,30 @@ const faqItems = [
 export default function HomePage() {
   const [showRoute, setShowRoute] = useState(false);
   const [route, setRoute] = useState(visaCategories[0]);
-  const purposeRef = useRef(null);
+  const [purpose, setPurpose] = useState(visaCategories[0].value);
+  const [nationality, setNationality] = useState(nationalities[0]);
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+    const t = setInterval(() => setSlideIndex((i) => (i + 1) % categorySlides.length), 7000);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+    const t = setInterval(() => setGalleryIndex((i) => (i + 1) % gallerySlides.length), 5500);
+    return () => clearInterval(t);
+  }, []);
 
   const handleRouteSubmit = (e) => {
     e.preventDefault();
-    const selected = visaCategories.find(item => item.value === purposeRef.current?.value) || visaCategories[0];
+    const selected = visaCategories.find(item => item.value === purpose) || visaCategories[0];
     setRoute(selected);
     setShowRoute(true);
     window.__forgeToast?.('Your eVisa route is ready');
@@ -37,16 +70,16 @@ export default function HomePage() {
 
   return (
     <>
-      <SiteHeader announcement="No emergency or express eVisa fee is charged. Know every cost before you pay." />
       <main>
         <section className="hero">
           <div className="hero-media">
-            <video autoPlay muted loop playsInline poster="/images/india-beauty-hero.jpg">
-              <source src="/video/india-beauty-loop.mp4" type="video/mp4" />
+            <video autoPlay muted loop playsInline poster="/images/india-beauty-hero.png">
+              <source src="/video/india-beauty-loop.mp4" type="video/mp4; codecs=hevc" />
+              <source src="/video/india-beauty-loop-1080p.mp4" type="video/mp4" />
             </video>
           </div>
           <div className="container hero-content">
-            <div>
+            <div className="hero-text">
               <div className="eyebrow light">Indian e&#x2011;Visa</div>
               <h1 className="serif">India begins with the right e&#x2011;Visa.</h1>
               <p className="hero-lead">Choose your travel purpose, prepare the right documents, pay the correct fee and track your ETA from one clear journey.</p>
@@ -82,15 +115,7 @@ export default function HomePage() {
               <Link className="btn btn-dark" href="/apply">Find my category →</Link>
             </aside>
           </div>
-          <div className="scroll-cue">Discover India</div>
         </section>
-
-        <section className="proof-strip"><div className="container proof-grid">
-          <div className="proof-item"><span className="proof-icon">9</span><div><strong>eVisa categories</strong><span>Tourist, business, medical, student and more</span></div></div>
-          <div className="proof-item"><span className="proof-icon">4</span><div><strong>Core process steps</strong><span>Apply, pay, receive ETA, fly</span></div></div>
-          <div className="proof-item"><span className="proof-icon">↺</span><div><strong>Recovery built in</strong><span>Continue, verify payment and re-upload</span></div></div>
-          <div className="proof-item"><span className="proof-icon">₹</span><div><strong>Transparent payment</strong><span>Fee varies by nationality and category</span></div></div>
-        </div></section>
 
         <section className="section"><div className="container"><div className="quick-start card">
           <div className="quick-copy">
@@ -100,8 +125,20 @@ export default function HomePage() {
           </div>
           <form className="quick-form" onSubmit={handleRouteSubmit}>
             <div className="form-grid">
-              <div className="field"><label htmlFor="nationality">Passport nationality</label><select id="nationality"><option>United Kingdom</option><option>United States</option><option>Australia</option><option>Canada</option><option>Japan</option><option>Singapore</option></select></div>
-              <div className="field"><label htmlFor="purpose">Reason for travel</label><select id="purpose" ref={purposeRef}>{visaCategories.map(item => <option key={item.value} value={item.value}>{item.title}</option>)}</select></div>
+              <CustomDropdown
+                id="nationality"
+                label="Passport nationality"
+                options={nationalities.map((n) => ({ value: n, label: n }))}
+                value={nationality}
+                onChange={setNationality}
+              />
+              <CustomDropdown
+                id="purpose"
+                label="Reason for travel"
+                options={visaCategories.map((item) => ({ value: item.value, label: item.title }))}
+                value={purpose}
+                onChange={setPurpose}
+              />
               <div className="field full"><label htmlFor="arrival">Planned arrival</label><input id="arrival" type="date" defaultValue="2026-08-10" /></div>
             </div>
             <button className="btn btn-primary" type="submit">See my route →</button>
@@ -113,12 +150,20 @@ export default function HomePage() {
           </form>
         </div></div></section>
 
-        <section className="section soft"><div className="container">
-          <div className="section-head"><div><div className="eyebrow">Visa categories</div><h2 className="serif">The service is not business-only.</h2></div><p>Official guidance lists several eVisa routes. The redesigned experience starts by choosing the category, then narrows timing, documents and payment.</p></div>
-          <div className="category-grid">
-            {visaCategories.map(item => <article className="category-card card" key={item.value}><h3>{item.title}</h3><p>{item.detail}</p><span>{item.docs}</span></article>)}
+        <section className="section soft category-section">
+          <div className="category-slideshow" aria-hidden="true">
+            {categorySlides.map((slide, i) => (
+              <div key={slide.src} className={`category-slide${i === slideIndex ? ' active' : ''}`} style={{ backgroundImage: `url(${slide.src})` }} />
+            ))}
+            <div className="category-overlay" />
           </div>
-        </div></section>
+          <div className="container">
+            <div className="section-head"><div><div className="eyebrow">Visa categories</div><h2 className="serif">The service is not business-only.</h2></div><p>Official guidance lists several eVisa routes. The redesigned experience starts by choosing the category, then narrows timing, documents and payment.</p></div>
+            <div className="category-grid">
+              {visaCategories.map(item => <article className="category-card card" key={item.value}><h3>{item.title}</h3><p>{item.detail}</p><span>{item.docs}</span></article>)}
+            </div>
+          </div>
+        </section>
 
         <section className="section dark"><div className="container">
           <div className="section-head"><div><div className="eyebrow light">Official lifecycle</div><h2 className="serif">Apply online. Pay online. Receive ETA. Fly to India.</h2></div><p>The public journey follows the official four-step process while adding recovery actions for partially filled forms, failed payments and document re-upload.</p></div>
@@ -131,38 +176,23 @@ export default function HomePage() {
         </div></section>
 
         <section className="section"><div className="container"><div className="feature-grid">
-          <figure className="feature-visual">
-            <img src="/images/bengaluru-blue-hour.png" alt="Bengaluru business district after monsoon rain" />
-            <figcaption className="feature-caption"><strong>India moves at many speeds.</strong><span>Bengaluru · Karnataka</span></figcaption>
-          </figure>
+          <div className="culture-gallery">
+            {gallerySlides.map((s, i) => (
+              <figure key={s.src} className={`feature-visual gallery-slide${i === galleryIndex ? ' active' : ''}`}>
+                <img src={s.src} alt={s.caption} />
+                <figcaption className="feature-caption"><strong>{s.caption}</strong><span>{s.tag}</span></figcaption>
+              </figure>
+            ))}
+            <div className="gallery-dots" aria-hidden="true">
+              {gallerySlides.map((_, i) => <span key={i} className={`gallery-dot${i === galleryIndex ? ' active' : ''}`} />)}
+            </div>
+          </div>
           <div className="feature-cards">
             <article className="feature-card card"><div><div className="eyebrow">Before you begin</div><h3>Check eligibility</h3><p>Passport nationality, passport type, travel purpose and prior restrictions decide whether eVisa is available.</p></div><Link href="/eligibility">Review the checklist →</Link></article>
             <article className="feature-card card"><div><div className="eyebrow">No surprises</div><h3>Fees depend on category and nationality</h3><p>The applicable eVisa fee and bank transaction charge are shown before payment. No emergency fee exists.</p></div><Link href="/help#fees">Understand fees →</Link></article>
             <article className="feature-card card"><div><div className="eyebrow">Return with confidence</div><h3>Track every update</h3><p>See submission, payment, document review, re-upload requests and decision as one readable timeline.</p></div><Link href="/track">Track an application →</Link></article>
           </div>
         </div></div></section>
-
-        <section className="section soft"><div className="container">
-          <div className="section-head"><div><div className="eyebrow">Continue or manage</div><h2 className="serif">The official service has recovery actions. So should this redesign.</h2></div><p>Applicants do not only start new forms. They come back to finish, pay, print, track and re-upload.</p></div>
-          <div className="utility-grid">
-            <Link className="utility-card card" href="/apply"><strong>Complete partially filled form</strong><span>Return to a saved application and continue from the last step.</span></Link>
-            <Link className="utility-card card" href="/track"><strong>Verify payment / pay fee</strong><span>Check pending payment state before retrying a transaction.</span></Link>
-            <Link className="utility-card card" href="/track"><strong>Print eVisa application</strong><span>Access the submitted form for records and travel preparation.</span></Link>
-            <Link className="utility-card card" href="/track"><strong>Check visa status</strong><span>Use the application reference to see scrutiny, re-upload and ETA status.</span></Link>
-            <Link className="utility-card card" href="/apply"><strong>Reupload data</strong><span>Replace unclear documents when review requests a correction.</span></Link>
-            <a className="utility-card card" href="https://indianvisaonline.gov.in/evisa/images/SampleForm.pdf" target="_blank" rel="noopener"><strong>Sample application form ↗</strong><span>Compare the redesigned flow against the official sample form.</span></a>
-          </div>
-        </div></section>
-
-        <section className="section" id="requirements"><div className="container">
-          <div className="section-head"><div><div className="eyebrow">Document checklist</div><h2 className="serif">Core files first. Category evidence second.</h2></div><p>Every route starts with passport and photo. Additional documents depend on the eVisa category and purpose.</p></div>
-          <div className="requirements">
-            <article className="requirement card"><span className="requirement-num">01</span><h3>Passport bio page</h3><p>Clear scan showing photograph, name, date of birth, nationality and expiry date. Official guidance specifies PDF size limits.</p></article>
-            <article className="requirement card"><span className="requirement-num">02</span><h3>Recent photograph</h3><p>Front-facing, full face, plain light or white background, without borders, shadows or blur.</p></article>
-            <article className="requirement card"><span className="requirement-num">03</span><h3>Category evidence</h3><p>Business card, hospital letter, admission letter, invitation, onward ticket or clearance documents depending on route.</p></article>
-          </div>
-          <div className="advisory"><div><strong>Give yourself enough time.</strong><span>Eligible e-Tourist and e-Business applicants should apply online at least 4 days before arrival; some categories use a 120-day window.</span></div><Link className="btn btn-outline btn-sm" href="/eligibility">Full eligibility details</Link></div>
-        </div></section>
 
         <section className="section soft"><div className="container faq">
           <div className="faq-intro"><div className="eyebrow">Plain answers</div><h2 className="serif">Before you ask.</h2><p>The essentials, without sending you through a maze of notices and PDFs.</p><Link className="btn btn-ghost" href="/help">Visit the help centre →</Link></div>
@@ -171,7 +201,6 @@ export default function HomePage() {
 
         <section className="cta-band"><div className="container cta-band-inner"><div><h2 className="serif">India is waiting. Start with the correct route.</h2><p>Select your travel purpose first, then prepare the exact evidence before payment.</p></div><Link className="btn btn-light" href="/apply">Start your application ↗</Link></div></section>
       </main>
-      <SiteFooter />
       <Toast />
     </>
   );

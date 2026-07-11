@@ -1,13 +1,10 @@
 'use client';
 import Link from 'next/link';
-import SiteHeader from '../components/SiteHeader';
-import SiteFooter from '../components/SiteFooter';
 import Toast from '../components/Toast';
 
 export default function EligibilityPage() {
   return (
     <>
-      <SiteHeader announcement="Normal e‑Business applications should be made at least 4 days before arrival." />
       <main>
         <section className="page-hero has-image">
           <div className="page-hero-media"><img src="/images/kerala-backwaters.png" alt="Morning over Kerala's backwaters" /></div>
@@ -97,7 +94,6 @@ export default function EligibilityPage() {
           </div>
         </section>
       </main>
-      <SiteFooter variant="minimal" disclaimer="Requirements summarised from Indian Visa Online. Confirm final eligibility with official guidance." />
       <Toast />
     </>
   );

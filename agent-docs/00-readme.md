@@ -32,11 +32,10 @@ Stable facts belong in overview/component/workflow files. Live state belongs und
 
 ## Sensitive material
 
-PixVerse authentication and account data remain outside this repository. Never add tokens, cookies, personal applicant data or payment details to this network.
+PixVerse authentication and account data remain outside this repository. Never add tokens, cookies, personal applicant data or payment details to this network. Customer-facing copy never calls this product a demo or prototype.
 
 ## See also
 
 - `../AGENTS.md`
 - `status/global.md`
 - `decisions.md`
-

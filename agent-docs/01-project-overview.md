@@ -4,36 +4,41 @@ Last updated: 2026-07-11
 
 ## Product
 
-Forge eVisa is a complete static redesign of India’s eVisa experience for the normal business traveller. Its promise is: **Business takes you places. India should be easy.**
-
-The product replaces category sprawl and dense notices with a destination-led landing page, one recommended route, a five-step application, lifecycle tracking, recoverable document requests and a digital ETA.
+Forge eVisa is a category-first redesign of India's full eVisa lifecycle. Its homepage leads with **“Choose your travel purpose first,”** then points users to the right category before paperwork. The product covers all eVisa categories the official Indian Visa Online lists (tourist, business, medical, medical attendant, student, family, transit, conference, production investment), keeps editorial cinematic media, and exposes both new-form and recovery actions (continue, pay, print, track, reupload).
 
 ## Audience
 
-Primary: first-time or infrequent international business travellers visiting Indian companies, suppliers, partners or offices. They need policy confidence without learning visa terminology.
+Primary: any international traveller applying for an Indian eVisa for the first time or for a non-routine category. They need to pick the right route and prepare the right evidence without learning visa terminology first.
 
-Secondary: operations or executive-assistant users supporting a traveller; returning applicants tracking a decision; approved travellers retrieving arrival information.
+Secondary: returning applicants tracking a decision; operations / executive-assistant users supporting a traveller; approved travellers retrieving ETA.
 
 ## Experience principles
 
-1. Desire first, administration second: cinematic India earns attention, then compact facts remove uncertainty.
-2. One route at a time: show the normal business route rather than a catalogue.
-3. Price honesty: never fabricate a fixed amount when the official fee depends on nationality.
-4. Recovery is a first-class state: saved progress, email reference, trackable review and re-upload.
-5. Digital-first ETA: clear mobile pass while retaining official arrival guidance.
-6. Authority through clarity: restrained visual system, accurate limits and links to canonical services.
+1. Category first, administration second. The homepage shows the route, then the form.
+2. One current category at a time. The route checker highlights the recommended category; the application labels every step with the active category.
+3. Price honesty. Never fabricate a fixed fee; show nationality-specific calculation, transaction charges and the no-emergency-fee advisory.
+4. Recovery is a first-class state. Saved progress, email reference, trackable review, exact re-upload action, recoverable sample-form link.
+5. Digital-first ETA. Clear mobile pass with no fabricated expiry, still telling travellers to carry the matching passport.
+6. Authority through clarity. Restrained visual system, accurate limits, official resources surfaced under Home and in the footer.
+7. Theme-matched UI. Native selects in themed feature cards use `CustomDropdown`; native selects in the application form keep OS-native rendering because their open state is not the primary visual.
 
 ## Visual system
 
-Warm ivory and near-black are paired with terracotta action, deep forest authority, sage success and gold advisory. Georgia provides the editorial display voice; system sans handles forms and task content. PixVerse media depicts Mumbai dawn, Bengaluru business life, Jaipur craft and Kerala backwaters.
+Warm ivory and near-black are paired with terracotta action, deep forest authority, sage success and gold advisory. Georgia provides the editorial display voice; system sans handles forms and task content. PixVerse media covers Kerala sunrise, Rajasthan heritage and Bengaluru/City modern India for the homepage and feature gallery.
+
+The official logos (Bureau of Immigration circular, Government of India emblem, Indian e-Visa) are loaded from `/public/images/official/` and placed without visible text labels:
+
+- Public header: BOI left, eVisa right, both clickable to the official sites.
+- Public footer brand column: Government of India emblem.
+- Apply header (`.app-header`): BOI left, eVisa right; secure-label centered; `Exit application` link.
 
 ## Technical boundary
 
-The current artifact is static HTML/CSS/JavaScript with local media. It has no backend, account system, real eligibility engine, upload endpoint, payment processor, email delivery or government integration. Customer-facing copy does not label the product a demo.
+This is a Next.js App Router application. Pages use the `app/` directory convention with `'use client'` directives for interactive components. No backend, no account system, no real eligibility engine, no upload endpoint, no payment processor, no email and no government integration. Customer-facing copy never calls the product a demo or prototype.
 
 ## Approval state
 
-The user requested autonomous development, then manual user verification. GitHub push is gated on explicit approval for a staging branch.
+User has approved iterative work via autonomous mode for an extended session. GitHub push is gated on explicit per-session approval from Jayant. Working tree is dirty with the most recent approved draft, awaiting his push instruction.
 
 ## See also
 
@@ -42,4 +47,3 @@ The user requested autonomous development, then manual user verification. GitHub
 - `status/global.md`
 - `../process.md`
 - `../docs/research/_SYNTHESIS.md`
-

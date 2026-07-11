@@ -1,8 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import OfficialMasthead from '../components/OfficialMasthead';
-import SiteFooter from '../components/SiteFooter';
 import Toast from '../components/Toast';
 
 export default function ApplyPage() {
@@ -46,15 +44,13 @@ export default function ApplyPage() {
 
   return (
     <>
-      <header className="app-header">
-        <div className="container app-nav">
-          <OfficialMasthead />
-          <span className="secure-label">◈ Category-aware eVisa application · Progress saved on this device</span>
-          <Link className="back-link" href="/">Exit application ×</Link>
-        </div>
-      </header>
-
       <main className="app-main" id="applicationFlow">
+        <div className="apply-context">
+          <div className="container">
+            <span className="secure-label">◈ Category-aware eVisa application · Progress saved on this device</span>
+            <Link className="exit-link" href="/">Exit application ×</Link>
+          </div>
+        </div>
         <div className="container">
           <div className="app-title">
             <div><div className="eyebrow">Indian e&#x2011;Visa</div><h1 className="serif">Start with the correct category.</h1></div>
@@ -230,7 +226,6 @@ export default function ApplyPage() {
           </div>
         </div>
       </main>
-      <SiteFooter variant="minimal" disclaimer="Do not share OTPs, passwords or payment credentials. Confirm final requirements with official Indian Visa Online guidance." />
       <Toast />
     </>
   );

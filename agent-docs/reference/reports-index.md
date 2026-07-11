@@ -21,13 +21,12 @@ Last updated: 2026-07-11
 - Bureau of Immigration: `https://boi.gov.in/`
 - PixVerse CLI README: `https://github.com/PixVerseAI/cli`
 
-## Attached hackathon material
+## Attached material provided by the user
 
-The user provided screenshots covering the brief, four deliverables, process-file rubric, scoring split, PixVerse feature expectations, submission folder structure and final deadline. The actionable requirements are curated in `../../process.md` rather than copied into this network.
+- `boi_logo_1.png`, `emblem.png`, `e-visa-logo.png` — official identity assets for the public header and footer. Stored under `public/images/official/` and re-named by purpose.
 
 ## See also
 
 - `../01-project-overview.md`
 - `../decisions.md`
 - `../../process.md`
-

@@ -1,8 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import SiteHeader from '../components/SiteHeader';
-import SiteFooter from '../components/SiteFooter';
 import Toast from '../components/Toast';
 
 export default function TrackPage() {
@@ -26,8 +24,6 @@ export default function TrackPage() {
 
   return (
     <>
-      <SiteHeader />
-
       <main className="section track-page-main">
         <div className="container track-grid">
           <section className="lookup">
@@ -69,7 +65,6 @@ export default function TrackPage() {
           </section>
         </div>
       </main>
-      <SiteFooter />
       <Toast />
     </>
   );

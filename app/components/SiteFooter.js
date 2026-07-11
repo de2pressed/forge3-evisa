@@ -26,13 +26,8 @@ export default function SiteFooter({ variant = 'full', disclaimer }) {
     <footer className="site-footer">
       <div className="container">
         <div className="footer-grid">
-          <div className="footer-brand">
-            <Link className="brand" href="/">
-              <svg className="brand-mark" viewBox="0 0 32 32" fill="none">
-                <path d="M16 2.5 19.4 12l9.1 4-9.1 4L16 29.5 12.6 20 3.5 16l9.1-4L16 2.5Z" fill="currentColor"/>
-              </svg>
-              <span>Forge<small style={{ color: '#9ba9a3' }}>India eVisa</small></span>
-            </Link>
+          <div className="footer-brand official-footer-brand">
+            <img src="/images/official/emblem.png" alt="Government of India emblem" />
             <p>A clearer way to understand and complete the Indian eVisa journey.</p>
           </div>
           <div className="footer-col">
@@ -43,7 +38,7 @@ export default function SiteFooter({ variant = 'full', disclaimer }) {
           </div>
           <div className="footer-col">
             <h3>Prepare</h3>
-            <Link href="/#requirements">Documents</Link>
+            <Link href="/help">Documents</Link>
             <Link href="/help#fees">Fees and payment</Link>
             <Link href="/help">Help centre</Link>
           </div>

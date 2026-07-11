@@ -1,14 +1,11 @@
 'use client';
 import Link from 'next/link';
-import SiteHeader from '../components/SiteHeader';
-import SiteFooter from '../components/SiteFooter';
 import Toast from '../components/Toast';
 import Accordion from '../components/Accordion';
 
 export default function HelpPage() {
   return (
     <>
-      <SiteHeader />
       <main>
         <section className="page-hero">
           <div className="container page-hero-content">
@@ -85,7 +82,6 @@ export default function HelpPage() {
           </div>
         </section>
       </main>
-      <SiteFooter variant="minimal" disclaimer="Never share payment OTPs or passwords with anyone claiming to process your visa." />
       <Toast />
     </>
   );
